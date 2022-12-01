@@ -10,7 +10,7 @@
 
     <Grid Margin="0,0,0,-181">
         <Grid.Background>
-            <ImageBrush ImageSource="/blackjack-classic-background.jpg"/>
+            <ImageBrush ImageSource="Resources/MenuPics/blackjack-classic-background.jpg"/>
         </Grid.Background>
         <Canvas Margin="28,129,389,369">
             <TextBlock FontSize="48" Foreground="White" Opacity="0.6" TextAlignment="Center" FontFamily="Algerian" Height="134" Canvas.Left="394" Width="435"><Run Text="House pays 1:1"/><LineBreak/><Run Text="Place your bet:"/></TextBlock>

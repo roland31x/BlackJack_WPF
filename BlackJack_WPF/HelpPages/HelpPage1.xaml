@@ -14,7 +14,7 @@
             <Button Background="#FFD8D400" Content="BACK" FontSize="16" FontFamily="Algerian" Click="Button_Click" Visibility="Collapsed" Width="86" Height="38" HorizontalAlignment="Left" Canvas.Left="347" Canvas.Top="281" VerticalAlignment="Top"/>
             <TextBlock Text="Basics:" FontFamily="Algerian" FontSize="48" TextAlignment="Center" Height="67" Width="780"/>
             <TextBlock FontFamily="Algerian" FontSize="14" TextWrapping="Wrap" Foreground="Black" Height="72" Canvas.Top="65" Width="780" Canvas.Left="-1" HorizontalAlignment="Center" VerticalAlignment="Top"><Run Text="Blackjack is a casino card game, it is played with a wager that is set before the round starts. "/><LineBreak/><Run Text="There are 4 cards dealt at the beginning, 2 for the player and 2 for the dealer, who will have a CARD face up and A CARD face down THAT WILL GET REVEALED ON THE DEALERS TURN.. "/><LineBreak/><Run Text="EACH CARD HAS A VALUE AS FOLLOWS:"/></TextBlock>
-            <Image Source="/CardPics/2_of_clubs.png" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Height="110" Canvas.Left="43" Canvas.Top="144" Width="76">
+            <Image Source="/Resources/2_of_clubs.png" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Height="110" Canvas.Left="43" Canvas.Top="144" Width="76">
                 <Image.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -24,11 +24,11 @@
                     </TransformGroup>
                 </Image.RenderTransform>
             </Image>
-            <Image Source="/CardPics/10_of_hearts.png" Stretch="Fill" Height="110" Canvas.Left="81" Canvas.Top="144" Width="76"/>
-            <Image Source="/CardPics/jack_of_clubs.png" Stretch="Fill" Height="110" Canvas.Left="275" Canvas.Top="144" Width="76"/>
-            <Image Source="/CardPics/king_of_diamonds.png" Stretch="Fill" Height="110" Canvas.Left="313" Canvas.Top="144" Width="77"/>
-            <Image Source="/CardPics/queen_of_clubs.png" Stretch="Fill" Height="110" Canvas.Left="351" Canvas.Top="144" Width="76"/>
-            <Image Source="/CardPics/ace_of_spades.png" Stretch="Fill" Height="110" Canvas.Left="568" Canvas.Top="144" Width="76"/>
+            <Image Source="/Resources/10_of_hearts.png" Stretch="Fill" Height="110" Canvas.Left="81" Canvas.Top="144" Width="76"/>
+            <Image Source="/Resources/jack_of_clubs.png" Stretch="Fill" Height="110" Canvas.Left="275" Canvas.Top="144" Width="76"/>
+            <Image Source="/Resources/king_of_diamonds.png" Stretch="Fill" Height="110" Canvas.Left="313" Canvas.Top="144" Width="77"/>
+            <Image Source="/Resources/queen_of_clubs.png" Stretch="Fill" Height="110" Canvas.Left="351" Canvas.Top="144" Width="76"/>
+            <Image Source="/Resources/ace_of_spades.png" Stretch="Fill" Height="110" Canvas.Left="568" Canvas.Top="144" Width="76"/>
             <TextBlock FontFamily="Algerian" FontSize="14" TextWrapping="Wrap" Foreground="Black" TextAlignment="Center" Height="68" Canvas.Left="44" Canvas.Top="266" Width="113"><Run Text="Face Values"/><LineBreak/><Run Text="( 2 to 10 )"/></TextBlock>
             <TextBlock FontFamily="Algerian" FontSize="24" TextWrapping="Wrap" Foreground="Black" Text="10" TextAlignment="Center" Height="34" Canvas.Left="275" Canvas.Top="266" Width="152"/>
             <TextBlock FontFamily="Algerian" FontSize="24" TextWrapping="Wrap" Foreground="Black" TextAlignment="Center" Height="34" Canvas.Left="530" Canvas.Top="266" Width="152"><Run Text="1 OR 11"/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>

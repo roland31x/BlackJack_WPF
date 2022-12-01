@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -52,10 +53,16 @@ namespace BlackJack_WPF
         void UpdateUI()
         {
             CurrentBal.Text = $"Available Balance:{Environment.NewLine}{App.BlackJackGame.Balance}$";
-        }       
+        }
+        void PlaySound()
+        {
+            SoundPlayer sound = new SoundPlayer("Sounds/coins-sound-fx.wav");
+            sound.Play();
+        }
 
         private void StartGame_Click(object sender, RoutedEventArgs e)
-        {
+        {          
+            PlaySound();
             App.BlackJackGame.Balance -= betval;
             App.BlackJackGame.CurrentBet = betval;
             App.ParentWindowRef.ParentFrame.Navigate(new GamePage());           

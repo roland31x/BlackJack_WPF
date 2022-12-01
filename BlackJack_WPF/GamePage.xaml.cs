@@ -52,6 +52,7 @@ namespace BlackJack_WPF
         async void Play()
         {
             ButtonCanvas.IsEnabled = false;
+            await Task.Delay(500);
             await DrawNewCardTimed();
             await D_DrawNewCardTimed();
             if (thisRound.LastCardVal == 11 && thisGame.Balance > 0)
