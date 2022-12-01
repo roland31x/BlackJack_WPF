@@ -1,0 +1,22 @@
+﻿<Page x:Class="BlackJack_WPF.BettingPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BlackJack_WPF"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="1280"
+      Title="BettingPage">
+
+    <Grid Margin="0,0,0,-181">
+        <Grid.Background>
+            <ImageBrush ImageSource="/blackjack-classic-background.jpg"/>
+        </Grid.Background>
+        <Canvas Margin="28,129,389,369">
+            <TextBlock FontSize="48" Foreground="White" Opacity="0.6" TextAlignment="Center" FontFamily="Algerian" Height="134" Canvas.Left="394" Width="435"><Run Text="House pays 1:1"/><LineBreak/><Run Text="Place your bet:"/></TextBlock>
+            <Button x:Name="StartGame" Content="PLACE" Background="#FF009517" Opacity="0.1" FontSize="72" FontFamily="Algerian" IsEnabled="False" Click="StartGame_Click" Height="99" Canvas.Left="400" Canvas.Top="304" Width="422"/>
+            <TextBlock x:Name="CurrentBal" FontSize="36" Foreground="White" Opacity="0.6" TextAlignment="Center" FontFamily="Algerian" Height="361" Width="327" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="10" TextWrapping="Wrap"/>
+            <TextBox x:Name="BetInput" TextAlignment="Center" Background="{x:Null}" BorderBrush="Black" BorderThickness="6,6,6,6" TextChanged="TextBox_TextChanged" Height="121" Canvas.Left="359" Canvas.Top="139" Width="504" FontSize="72"/>
+        </Canvas>
+    </Grid>
+</Page>

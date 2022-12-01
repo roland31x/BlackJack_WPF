@@ -1,0 +1,61 @@
+﻿<Page x:Class="BlackJack_WPF.Page1"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BlackJack_WPF"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="1280"
+      Title="MainMenu">
+
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/background_menu.jpg"/>
+        </Grid.Background>
+        <Canvas Margin="176,10,152,109">
+            <Image Source="/CardPics/queen_of_hearts.png" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Height="169" Canvas.Left="775" Canvas.Top="284" Width="116">
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-15"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+            <Button Content="PLAY" Background="#FF008619" BorderBrush="Black" FontSize="72" FontFamily="Algerian" Click="Play_Button_Click" Height="140" Canvas.Left="257" Canvas.Top="280" Width="414"/>
+            <Button Background="#FFA50000" Content="HIGH SCORES" FontSize="36" FontFamily="Algerian" Click="Highscore_Button_Click" Height="81" Canvas.Left="330" Canvas.Top="520" Width="268"/>
+            <TextBlock Text="BLACKJACK GAME" Foreground="White" FontFamily="Algerian" FontSize="72" TextWrapping="Wrap" TextAlignment="Center" Height="177" Canvas.Left="202" Width="524"/>
+            <Image Source="/CardPics/ace_of_spades.png" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Height="177" Canvas.Top="290" Width="122">
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-15"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+            <Image Source="/CardPics/king_of_spades.png" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Height="172" Canvas.Left="68" Canvas.Top="293" Width="118">
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="15"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+            <Image Source="/CardPics/card_back.png" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Height="169" Canvas.Left="836" Canvas.Top="284" Width="116">
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="15"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+        </Canvas>
+    </Grid>
+</Page>
