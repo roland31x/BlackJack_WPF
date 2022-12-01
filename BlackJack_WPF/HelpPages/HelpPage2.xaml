@@ -1,0 +1,27 @@
+﻿<Page x:Class="BlackJack_WPF.HelpPages.HelpPage2"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BlackJack_WPF.HelpPages"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="800"
+      Title="HelpPage2">
+
+    <Grid Background="#FF036F00">
+        <Canvas HorizontalAlignment="Center" Height="544" VerticalAlignment="Top" Width="780">
+            <TextBlock Text="the interface:" FontFamily="Algerian" FontSize="48" TextAlignment="Center" Height="67" Width="780"/>
+            <TextBlock Text="The player draws a new card from the deck." FontFamily="Algerian" FontSize="24" Height="35" Canvas.Left="211" Canvas.Top="150" Width="569"/>
+            <TextBlock Text="ONCE THE WAGER IS SET, THE ROUND STARTS AND THE PLAYER CAN PRESS THE FOLLOWING BUTTONS:" FontFamily="Algerian" FontSize="20" TextWrapping="Wrap" TextAlignment="Center" Height="67" Canvas.Top="67" Width="780"/>
+            <TextBlock Text="HIT" FontFamily="Algerian" FontSize="48" TextAlignment="Center" Background="#FFF6A900" Height="61" Canvas.Left="43" Canvas.Top="134" Width="139"/>
+            <TextBlock FontFamily="Algerian" FontSize="20" TextAlignment="Center" Background="#FFCE0000" TextWrapping="Wrap" Height="53" Canvas.Left="43" Canvas.Top="202" Width="139"><Run Text="DOUBLE "/><LineBreak/><Run Text="DOWN"/></TextBlock>
+            <TextBlock Text="STAND" FontFamily="Algerian" FontSize="36" TextAlignment="Center" Background="#FF00FF0B" RenderTransformOrigin="0.528,1.77" Height="49" Canvas.Left="43" Canvas.Top="270" Width="139"/>
+            <TextBlock Text="The player draws exactly one new card from the deck and doubles the wager of the round." FontFamily="Algerian" FontSize="18" TextWrapping="Wrap" TextAlignment="Center" Height="53" Canvas.Left="211" Canvas.Top="207" Width="569"/>
+            <TextBlock FontFamily="Algerian" FontSize="16" TextWrapping="Wrap" Height="30" Canvas.Left="211" Canvas.Top="282" Width="569"><Run Text="The player keeps the current hand and it will be the dealers turn."/><LineBreak/><Run/></TextBlock>
+            <TextBlock Text="insurance" FontFamily="Algerian" FontSize="24" TextAlignment="Center" Background="#FF00B5FF" RenderTransformOrigin="0.528,1.77" Height="33" Canvas.Left="43" Canvas.Top="371" Width="139"/>
+            <TextBlock FontFamily="Algerian" TextWrapping="Wrap" TextAlignment="Center" Height="104" Canvas.Left="211" Canvas.Top="339" Width="569"><Run Text="INSURANCE IS A SPECIAL CASE ONLY AVAILABLE AT THE START OF THE ROUND, WHEN THE FACE UP CARD OF THE DEALER IS AN ACE, IN THIS CASE THE PLAYER HAS THE OPPORTUNITY TO PLACE A WAGER NOT BIGGER THAN HALF OF THE CURRENT WAGER."/><LineBreak/><Run Text="if the hidden card of the dealer gives him a blackjack the insurance bet is paid out 2:1 at the end of the round."/><LineBreak/><Run Text="THE INSURANCE BET REWARD IS GIVEN OUT REGARDLESS OF THE ROUND OUTCOME."/><LineBreak/><Run/></TextBlock>
+            <Button Background="#FFAB0000" Content="NEXT" FontSize="16" FontFamily="Algerian" Click="Button_Click" Height="37" Width="85" HorizontalAlignment="Left" Canvas.Left="673" Canvas.Top="507" VerticalAlignment="Top"/>
+            <Button Background="#FFD8D400" Content="BACK" FontSize="16" FontFamily="Algerian" Click="ButtonB_Click" Height="39" Width="85" HorizontalAlignment="Left" Canvas.Left="43" Canvas.Top="505" VerticalAlignment="Top"/>
+        </Canvas>
+    </Grid>
+</Page>

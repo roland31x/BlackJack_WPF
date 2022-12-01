@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -14,22 +13,21 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BlackJack_WPF
+namespace BlackJack_WPF.HelpPages
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for HelpPage1.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class HelpPage1 : Page
     {
-        public MainWindow()
+        public HelpPage1()
         {
             InitializeComponent();
         }
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            App.ParentWindowRef = this;
-            this.ParentFrame.Navigate(new Page1());
+            App.HowToPlayWindow.ParentFrameHelper.Navigate(new HelpPage2());
         }
     }
-
 }

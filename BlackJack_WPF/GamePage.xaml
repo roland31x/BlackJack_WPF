@@ -10,11 +10,11 @@
 
     <Grid Margin="0,0,0,-181">
         <Grid.Background>
-            <ImageBrush ImageSource="/blackjack-classic-background.jpg"/>
+            <ImageBrush ImageSource="/MenuPics/blackjack-classic-background.jpg"/>
         </Grid.Background>
 
         <Canvas x:Name="MainCanvas" Margin="106,50,245,254">
-            <TextBlock x:Name="EndScreen" Text="" Foreground="White" FontSize="70" Height="95" Canvas.Left="-19" Canvas.Top="291" Width="1088" Opacity="0.8" FontFamily="Algerian" HorizontalAlignment="Left" VerticalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap"/>
+            <TextBlock x:Name="EndScreen" Text="" Foreground="White" FontSize="50" Height="95" Canvas.Left="-19" Canvas.Top="291" Width="1088" Opacity="0.8" FontFamily="Algerian" HorizontalAlignment="Left" VerticalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap"/>
             <TextBlock x:Name="HandVal" Text="Your Hand:" Foreground="White" FontSize="36" Height="51" Canvas.Left="334" Canvas.Top="381" Width="361" Opacity="0.5" FontFamily="Algerian"/>
             <TextBlock x:Name="HouseRule" Foreground="White" FontSize="24" Height="110" Canvas.Left="-58" Canvas.Top="189" Width="314" HorizontalAlignment="Left" VerticalAlignment="Top" Opacity="0.5" TextWrapping="Wrap" TextAlignment="Center" Text="House Rule:&#xA;Dealer must draw on 16 and stand on 17." FontFamily="Algerian"/>
             <TextBlock x:Name="BetVal" Text="Current Bet:" Foreground="White" FontSize="36" Height="50" Width="358" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Algerian" Opacity="0.6" Canvas.Left="-32"/>
@@ -27,6 +27,15 @@
             <Button x:Name ="Insurance_Button" Content="Insurance" FontSize="22" FontFamily="Algerian" Background="#FF0086ED" Click="Insurance_Button_Click" Visibility="Collapsed" Canvas.Left="881" Canvas.Top="189" HorizontalAlignment="Left" VerticalAlignment="Top" Width="142"/>
             <Button x:Name ="NewGameButton" Content="Continue" FontSize="36" FontFamily="Algerian" Background="#FF00B208" Click="NewGame" Canvas.Left="846" Canvas.Top="128" HorizontalAlignment="Left" VerticalAlignment="Top" Width="189" Height="99" Visibility="Collapsed"/>
             <TextBlock x:Name="InsVal" Text="" Foreground="White" FontSize="36" Height="50" Width="358" FontFamily="Algerian" Opacity="0.6" Canvas.Left="-32" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Top="50" Visibility="Collapsed"/>
+            <TextBlock x:Name="DealerVal_Copy" Foreground="Black" FontSize="60" Height="102" Canvas.Left="863" Canvas.Top="-1" Width="161" Opacity="0.7" FontFamily="Algerian" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" TextAlignment="Center">
+                <TextBlock.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="21.381"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </TextBlock.RenderTransform><Run Text="50"/><LineBreak/><Run/></TextBlock>
         </Canvas>
     </Grid>
 </Page>

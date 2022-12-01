@@ -13,6 +13,10 @@ namespace BlackJack_WPF
     /// </summary>
     public partial class App : Application
     {
-            public static MainWindow ParentWindowRef;
+        public static MainWindow ParentWindowRef;
+        public static HelpPages.Help HowToPlayWindow;
+        
+        public static BlackJack.Deck myDeck = new BlackJack.Deck();
+        public static BlackJack.BlackJackStats BlackJackGame = new BlackJack.BlackJackStats();
     }
 }

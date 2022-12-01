@@ -24,6 +24,7 @@ namespace BlackJack_WPF
         public BettingPage()
         {
             InitializeComponent();
+            DeckCount.Text = $"{App.myDeck.CardsLeft()}";
             UpdateUI();
         }
 
@@ -35,7 +36,7 @@ namespace BlackJack_WPF
                 StartGame.Opacity = 0.1;
                 return;
             }
-            if (BlackJack.Balance - betval < 0)
+            if (App.BlackJackGame.Balance - betval < 0)
             {
                 StartGame.IsEnabled = false;
                 StartGame.Opacity = 0.1;
@@ -50,14 +51,30 @@ namespace BlackJack_WPF
         }
         void UpdateUI()
         {
-            CurrentBal.Text = $"Available Balance:{Environment.NewLine}{BlackJack.Balance}$";
+            CurrentBal.Text = $"Available Balance:{Environment.NewLine}{App.BlackJackGame.Balance}$";
         }       
 
         private void StartGame_Click(object sender, RoutedEventArgs e)
         {
-            BlackJack.Balance -= betval;
-            BlackJack.CurrentBet = betval;
+            App.BlackJackGame.Balance -= betval;
+            App.BlackJackGame.CurrentBet = betval;
             App.ParentWindowRef.ParentFrame.Navigate(new GamePage());           
+        }
+
+        private void Shuffle_Click(object sender, RoutedEventArgs e)
+        {
+            App.myDeck.ShuffleDeck();
+            Shuffle_b.IsEnabled = false;
+            Shuffle_b.Content = "Shuffled";
+            
+        }
+
+        private void NewDeck_Click(object sender, RoutedEventArgs e)
+        {
+            App.myDeck = BlackJack.Deck.NewDeck();
+            NewDeck_b.IsEnabled = false;
+            NewDeck_b.Content = "Done!";
+            DeckCount.Text = $"{App.myDeck.CardsLeft()}";
         }
     }
 }

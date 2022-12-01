@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -17,14 +18,15 @@ using static System.Net.Mime.MediaTypeNames;
 using Image = System.Windows.Controls.Image;
 
 namespace BlackJack_WPF
-{
+{   
     /// <summary>
     /// Interaction logic for GamePage.xaml
     /// </summary>
     public partial class GamePage : Page
     {
-        BlackJack.Deck myDeck = new BlackJack.Deck();
-        BlackJack.Game nGame = new BlackJack.Game(); 
+        BlackJack.BlackJackStats thisGame = App.BlackJackGame;
+
+        BlackJack.Round thisRound = new BlackJack.Round(); 
         
         ImageSourceConverter imgConv = new ImageSourceConverter();
         
@@ -38,115 +40,165 @@ namespace BlackJack_WPF
         bool Natural_D = false;
         
         int DealersHValue;
+
         public int cardcounter = 0;
         public int CardOffset = 80;
         public int d_cardcounter = 0;
         public GamePage()
         {
             InitializeComponent();
-
-            DrawNewCard();
-            DrawNewCard();
-            
-            D_DrawNewCard();
-            if (nGame.LastCardVal == 11)
+            Play();         
+        }
+        async void Play()
+        {
+            ButtonCanvas.IsEnabled = false;
+            await DrawNewCardTimed();
+            await D_DrawNewCardTimed();
+            if (thisRound.LastCardVal == 11 && thisGame.Balance > 0)
             {
                 Insurance_Button.Visibility = Visibility.Visible;
             }
-            D_DrawNewCard();
-            if (nGame.NaturalBlackJackCheck_P())
+            await DrawNewCardTimed();
+            await D_DrawNewCardTimed();           
+            
+            if (thisRound.NaturalBlackJackCheck_P())
             {
                 Natural_P = true;
                 DealersTurn();
                 FinalCompare();
             }
-            DealersHiddenCard = (ImageSource)imgConv.ConvertFromString(myDeck.DrawCard(nGame));
-            DealersHValue = nGame.LastCardVal;
+            ButtonCanvas.IsEnabled = true;
         }
-
 
         private void DoubleDown(object sender, RoutedEventArgs e)
         {
-            Insurance_Button.IsEnabled = false;
-            DD_Button.IsEnabled = false;
-            Stand_Button.IsEnabled = false;
-            Hit_Button.IsEnabled = false;
-            BlackJack.Balance -= BlackJack.CurrentBet;
-            BlackJack.CurrentBet *= 2;           
+            Insurance_Button.Visibility = Visibility.Collapsed;
+            thisGame.Balance -= thisGame.CurrentBet;
+            thisGame.CurrentBet *= 2;           
             Hit(sender, e);           
             DealersTurn();
         }
 
         private void Stand(object sender, RoutedEventArgs e)
         {
-            Insurance_Button.IsEnabled = false;
-
+            Insurance_Button.Visibility= Visibility.Collapsed;
             DealersTurn();
         }
 
-        private void Hit(object sender, RoutedEventArgs e)
+        private async void Hit(object sender, RoutedEventArgs e)
         {
-            Insurance_Button.IsEnabled = false;
-            DrawNewCard();                      
-            if(nGame.HandVal >= 21)
+            Insurance_Button.Visibility = Visibility.Collapsed;
+            ButtonCanvas.IsEnabled = false;
+            await DrawNewCardTimed();                      
+            if(thisRound.HandVal >= 21)
             {
-                if(nGame.HandVal == 21)
+                if(thisRound.HandVal == 21)
                 {                  
                     DealersTurn();
                 }
-                if(nGame.HandVal > 21)
+                if(thisRound.HandVal > 21)
                 {
+                    if (thisRound.WasInsured)
+                    {
+                        InsuranceCheck();
+                        return;
+                    }
                     ButtonCanvas.Visibility = Visibility.Collapsed;
                     GameEndScreen(3);
                 }
             }
+            ButtonCanvas.IsEnabled = true;
         }
 
         private void Insurance_Button_Click(object sender, RoutedEventArgs e)
         {
             Insurance_Button.IsEnabled = false;
             Insurance_Button.Content = "Insured";
-            nGame.WasInsured = true;
+            thisRound.WasInsured = true;
             InsuranceWindow insurance = new InsuranceWindow();
             insurance.ShowDialog();
-            BetVal.Text = "Current Bet: " + BlackJack.CurrentBet +"$";
+            BetVal.Text = "Current Bet: " + thisGame.CurrentBet +"$";
             InsVal.Visibility = Visibility.Visible;
-            InsVal.Text = $"Insurance bet: " + BlackJack.InsuranceBet + "$";
+            InsVal.Text = $"Insurance bet: " + App.BlackJackGame.InsuranceBet + "$";
+            App.BlackJackGame.Balance -= App.BlackJackGame.InsuranceBet;
 
+        }
+        void CardSound()
+        {
+            SoundPlayer sound = new SoundPlayer("Sounds/Card-flip-sound-effect.wav");
+            sound.Play();
+        }
+        void WinSound()
+        {
+            SoundPlayer sound = new SoundPlayer("Sounds/app-29.wav");
+            sound.Play();
+        }
+        void LoseSound()
+        {
+            SoundPlayer sound = new SoundPlayer("Sounds/Lose-sound.wav");
+            sound.Play();
         }
         private void UpdateUI()
         {
-            HandVal.Text = "Your Hand: " + nGame.HandVal;
-            DealerVal.Text = "Dealer Hand: " + nGame.D_HandVal;
-            BetVal.Text = "Current Bet: " + BlackJack.CurrentBet;
+            
+            HandVal.Text = "Your Hand: " + thisRound.HandVal;
+            if (thisRound.HandValSoft != 0 && thisRound.HandValSoft < thisRound.HandVal)
+            {
+                HandVal.Text = "Your Hand: " + thisRound.HandVal + " / " + thisRound.HandValSoft;
+            }
+            DealerVal.Text = "Dealer Hand: " + thisRound.D_HandVal;
+            if (thisRound.D_HandValSoft != 0 && thisRound.D_HandValSoft < thisRound.D_HandVal)
+            {
+                DealerVal.Text = "Your Hand: " + thisRound.D_HandVal + " / " + thisRound.D_HandValSoft;
+            }
+            BetVal.Text = "Current Bet: " + thisGame.CurrentBet+"$";
+            DealerVal_Copy.Text = $"{App.myDeck.CardsLeft()}";
         }
-        private void DealersTurn()
+        private async void InsuranceCheck()
         {
-            ButtonCanvas.Visibility= Visibility.Collapsed;
-            nGame.D_AddCard(DealersHValue);
+            ButtonCanvas.Visibility = Visibility.Collapsed;
+            thisRound.D_AddCard(DealersHValue);
             d_images[1].Source = DealersHiddenCard;
-            nGame.D_HandCalc();
+            thisRound.D_HandCalc();
             UpdateUI();
-            if (nGame.NaturalBlackJackCheck_D())
+            await Task.Delay(1000);
+            if (thisRound.NaturalBlackJackCheck_D())
+            {
+                MessageBox.Show($"Insurance paid off! You get ${thisGame.InsuranceBet * 2} back.");
+                thisGame.Balance += thisGame.InsuranceBet * 3;
+                GameEndScreen(10);
+            }
+        }
+        private async void DealersTurn()
+        {
+            CardSound();
+            await Task.Delay(200);
+            ButtonCanvas.Visibility= Visibility.Collapsed;
+            thisRound.D_AddCard(DealersHValue);
+            d_images[1].Source = DealersHiddenCard;
+            thisRound.D_HandCalc();
+            UpdateUI();
+            await Task.Delay(700);
+            if (thisRound.NaturalBlackJackCheck_D())
             {
                 Natural_D = true;
                 FinalCompare();
                 return;
             }
-            while (nGame.D_HandVal < 17)
+            while (thisRound.D_HandVal < 17)
             {
-                D_DrawNewCard();
+                await D_DrawNewCardTimed();
             }
             FinalCompare();
         }
         private void FinalCompare()
         {
-            if (nGame.WasInsured) 
+            if (thisRound.WasInsured) 
             {
                 if(Natural_D)
                 {
-                    MessageBox.Show($"Insurance paid off! You get ${BlackJack.InsuranceBet * 2} back.");
-                    BlackJack.Balance += BlackJack.InsuranceBet * 2;
+                    MessageBox.Show($"Insurance paid off! You get ${thisGame.InsuranceBet * 2} back.");
+                    thisGame.Balance += thisGame.InsuranceBet * 3;
                 }
             }
             if (Natural_D && !Natural_P)
@@ -164,27 +216,27 @@ namespace BlackJack_WPF
                 GameEndScreen(11);
                 return;
             }
-            if (nGame.HandVal > 21) 
+            if (thisRound.HandVal > 21) 
             {
                 GameEndScreen(3);
                 return;
             }
-            if (nGame.HandVal < nGame.D_HandVal && nGame.D_HandVal <= 21)
+            if (thisRound.HandVal < thisRound.D_HandVal && thisRound.D_HandVal <= 21)
             {
                 GameEndScreen(0);
                 return;
             }
-            if (nGame.HandVal > nGame.D_HandVal)
+            if (thisRound.HandVal > thisRound.D_HandVal)
             {
                 GameEndScreen(1);
                 return;
             }
-            if (nGame.HandVal == nGame.D_HandVal)
+            if (thisRound.HandVal == thisRound.D_HandVal)
             {
                 GameEndScreen(2);
                 return;
             }
-            if (nGame.D_HandVal > 21)
+            if (thisRound.D_HandVal > 21)
             {
                 GameEndScreen(4);
                 return;
@@ -195,14 +247,16 @@ namespace BlackJack_WPF
             EndScreen.Visibility = Visibility.Visible;
             switch (cases)
             {
-                case 0:EndScreen.Text = $"You lost {BlackJack.CurrentBet}$";break;
-                case 1:EndScreen.Text = $"You won {BlackJack.CurrentBet}$";BlackJack.Balance += BlackJack.CurrentBet * 2; break;
-                case 2:EndScreen.Text = $"PUSH!"; BlackJack.Balance += BlackJack.CurrentBet; break;
-                case 3: EndScreen.Text = $"BUST! You lost {BlackJack.CurrentBet}$"; break;
-                case 4: EndScreen.Text = $"DEALER BUST! You won {BlackJack.CurrentBet}$"; BlackJack.Balance += BlackJack.CurrentBet * 2; break;
-                case 10: EndScreen.Text = $"DEALER BLACKJACK! You lost {BlackJack.CurrentBet}$"; break;
-                case 11: EndScreen.Text = $"BLACKJACK! You won {BlackJack.CurrentBet}$"; BlackJack.Balance += BlackJack.CurrentBet * 2; break;
-                case 12: EndScreen.Text = $"NATURAL BLACKJACKS!!! PUSH!"; BlackJack.Balance += BlackJack.CurrentBet; break;
+                case 0: EndScreen.Text = $"You lost {thisGame.CurrentBet}$"; LoseSound();break;
+                case 1: EndScreen.Text = $"You won {thisGame.CurrentBet}$";thisGame.Balance += thisGame.CurrentBet * 2; WinSound(); break;
+                case 2: EndScreen.Text = $"PUSH!"; thisGame.Balance += thisGame.CurrentBet; break;
+                case 3: EndScreen.Text = $"BUST! You lost {thisGame.CurrentBet}$"; LoseSound(); break;
+                case 4: EndScreen.Text = $"DEALER BUST! You won {thisGame.CurrentBet}$"; thisGame.Balance += thisGame.CurrentBet * 2; WinSound(); break;
+                case 10: EndScreen.Text = $"DEALER BLACKJACK! You lost {thisGame.CurrentBet}$"; LoseSound();
+                    break;
+                case 11: EndScreen.Text = $"BLACKJACK! You won {thisGame.CurrentBet}$"; thisGame.Balance += thisGame.CurrentBet * 2; WinSound();
+                    break;
+                case 12: EndScreen.Text = $"NATURAL BLACKJACKS!!! PUSH!"; thisGame.Balance += thisGame.CurrentBet; break;
             }
             NewGameButton.Visibility = Visibility.Visible;
         }
@@ -211,13 +265,13 @@ namespace BlackJack_WPF
             cardcounter++;           
             var cardf = new Image()
             {
-                Source = (ImageSource)imgConv.ConvertFromString(myDeck.DrawCard(nGame)),
+                Source = (ImageSource)imgConv.ConvertFromString(App.myDeck.DrawCard(thisRound)),
                 Height = 160,
                 Width = 110,
                 Stretch = Stretch.Fill,
                 Visibility = Visibility.Visible,
             };
-            nGame.AddCard();
+            thisRound.AddCard();
             MainCanvas.Children.Add(cardf);
             images.Add(cardf);
             Canvas.SetTop(cardf, 437);
@@ -234,7 +288,7 @@ namespace BlackJack_WPF
                     Canvas.SetLeft(images[i], Canvas.GetLeft(images[i]) + (40 * (images.Count - i)));
                 }
             }
-            nGame.HandCalc();
+            thisRound.HandCalc();
             UpdateUI();
 
         }
@@ -243,8 +297,8 @@ namespace BlackJack_WPF
             d_cardcounter++;
             if(d_cardcounter == 2)
             {
-                DealersHiddenCard = (ImageSource)imgConv.ConvertFromString(myDeck.DrawCard(nGame));
-                DealersHValue = nGame.LastCardVal;
+                DealersHiddenCard = (ImageSource)imgConv.ConvertFromString(App.myDeck.DrawCard(thisRound));
+                DealersHValue = thisRound.LastCardVal;
                 var cardh = new Image()
                 {
                     Source = (ImageSource)imgConv.ConvertFromString("CardPics/card_back.png"),
@@ -261,17 +315,18 @@ namespace BlackJack_WPF
                 {
                     Canvas.SetLeft(s, Canvas.GetLeft(s) - CardOffset);
                 }
+                UpdateUI();
                 return;
             }
             var cardf = new Image()
             {
-                Source = (ImageSource)imgConv.ConvertFromString(myDeck.DrawCard(nGame)),
+                Source = (ImageSource)imgConv.ConvertFromString(App.myDeck.DrawCard(thisRound)),
                 Height = 160,
                 Width = 110,
                 Stretch = Stretch.Fill,
                 Visibility = Visibility.Visible,
             };
-            nGame.D_AddCard();
+            thisRound.D_AddCard();
             MainCanvas.Children.Add(cardf);
             d_images.Add(cardf);
             Canvas.SetTop(cardf, 79);
@@ -288,12 +343,41 @@ namespace BlackJack_WPF
                     Canvas.SetLeft(images[i], Canvas.GetLeft(images[i]) + (40 * (images.Count - i)));
                 }
             }
-            nGame.D_HandCalc();
+            thisRound.D_HandCalc();
             UpdateUI();
+        }
+        async Task DrawNewCardTimed()
+        {
+            CardSound();
+            await Task.Delay(200);          
+            DrawNewCard();
+            await Task.Delay(700);
+        }
+        async Task D_DrawNewCardTimed()
+        {           
+            CardSound();
+            await Task.Delay(200);
+            D_DrawNewCard();
+            await Task.Delay(700);
         }
 
         private void NewGame(object sender, RoutedEventArgs e)
         {
+            thisGame.GamesPlayed++;
+            if (App.myDeck.CardsLeft() < 22)
+            {
+
+                App.myDeck = BlackJack.Deck.NewDeck();
+                MessageBox.Show("Deck is low on cards, shuffling a new deck...");
+            }
+            if(thisGame.Balance == 0)
+            {
+                LoseSound();
+                MessageBox.Show($"You ran out of money!{Environment.NewLine}You managed to play a total of {thisGame.GamesPlayed} rounds before losing all your money.{Environment.NewLine}No problem, you can start again with 500$.");
+                App.BlackJackGame = new BlackJack.BlackJackStats();
+                App.myDeck = BlackJack.Deck.NewDeck();
+            }
+            App.BlackJackGame.CheckScore();
             App.ParentWindowRef.ParentFrame.Navigate(new BettingPage());
         }
     }

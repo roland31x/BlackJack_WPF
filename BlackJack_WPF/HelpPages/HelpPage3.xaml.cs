@@ -1,5 +1,4 @@
-﻿using BlackJack_WPF.HelpPages;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,28 +13,25 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BlackJack_WPF
+namespace BlackJack_WPF.HelpPages
 {
     /// <summary>
-    /// Interaction logic for Page1.xaml
+    /// Interaction logic for HelpPage3.xaml
     /// </summary>
-    public partial class Page1 : Page
-    { 
-        
-        public Page1()
+    public partial class HelpPage3 : Page
+    {
+        public HelpPage3()
         {
             InitializeComponent();
         }
-
-        private void Play_Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            App.ParentWindowRef.ParentFrame.Navigate(new BettingPage());
+            App.HowToPlayWindow.Close();
         }
 
-        private void HowToPlay_Click(object sender, RoutedEventArgs e)
+        private void ButtonB_Click(object sender, RoutedEventArgs e)
         {
-            Help help = new Help();
-            help.ShowDialog();
+            App.HowToPlayWindow.ParentFrameHelper.Navigate(new HelpPage2());
         }
     }
 }

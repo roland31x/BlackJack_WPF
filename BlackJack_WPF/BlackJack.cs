@@ -2,7 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Media;
 using System.Numerics;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,11 +13,35 @@ using System.Windows.Media;
 namespace BlackJack_WPF
 {
     public class BlackJack
-    {
-        public static int Balance = 500;
-        public static int CurrentBet { get; set; }
-        public static int InsuranceBet { get; set; }
-        public class Game
+    {      
+        public class BlackJackStats
+        {
+            public int Balance { get; set; }
+            public int GamesPlayed { get; set; }
+            public int CurrentBet { get; set; }
+            public int InsuranceBet { get; set; }
+            protected string Name { get; set; }         
+            protected int MaxBal { get; set; }
+            public BlackJackStats()
+            {
+                Balance = 500;
+                MaxBal = 500;
+                GamesPlayed = 0;
+                Name = "player";
+            }
+            public void SetName(string s)
+            {
+                this.Name = s;
+            }
+            public void CheckScore()
+            {
+                if(this.Balance > MaxBal)
+                {
+                    MaxBal = this.Balance;
+                }
+            }
+        }
+        public class Round
         {
             public bool WasInsured { get; set; }
             public List<int> CardValues { get; set; }
@@ -23,11 +49,15 @@ namespace BlackJack_WPF
             public int LastCardVal { get; set; }
             public int HandVal { get; set; }
             public int D_HandVal { get; set; }
-            public Game()
+            public int HandValSoft { get; set; }
+            public int D_HandValSoft { get; set; }
+            public Round()
             {
                 CardValues = new List<int>();
                 D_CardValues = new List<int>();
                 WasInsured = false;
+                D_HandValSoft = 0;
+                HandValSoft = 0;
             }
             public void AddCard()
             {
@@ -41,14 +71,7 @@ namespace BlackJack_WPF
             {
                 D_CardValues.Add(f);
             }
-            public void HandCalc()
-            {
-                HandVal = 0;
-                foreach (int i in CardValues)
-                {
-                    HandVal += i;
-                }
-            }
+           
             public bool NaturalBlackJackCheck_P()
             {
                 if (HandVal == 21 && CardValues.Count == 2)
@@ -65,6 +88,25 @@ namespace BlackJack_WPF
                     return true;
                 }
                 else return false;
+            } 
+            public void HandCalc()
+            {
+                HandVal = 0;
+                foreach (int i in CardValues)
+                {
+                    HandVal += i;
+                }
+                if (CardValues.Contains(11))
+                {
+                    HandValSoft = HandVal - 10;
+                    if (HandVal > 21)
+                    {
+                        CardValues.Remove(11);
+                        CardValues.Add(1);
+                        HandVal = HandValSoft;
+                        HandValSoft = 0;
+                    }
+                }
             }
             public void D_HandCalc()
             {
@@ -73,14 +115,24 @@ namespace BlackJack_WPF
                 {
                     D_HandVal += i;
                 }
+                if (D_CardValues.Contains(11))
+                {
+                    D_HandValSoft = D_HandVal - 10;
+                    if(D_HandVal > 21)
+                    {
+                        D_CardValues.Remove(11);
+                        D_CardValues.Add(1);
+                        D_HandVal = D_HandValSoft;
+                        D_HandValSoft = 0;
+                    }
+                }
             }
         }
         public class Deck
         {
             Stack<Vector2> CurrentDeck = new Stack<Vector2>();
             public Deck()
-            {
-                
+            {               
                 List<Vector2> newDeck = new List<Vector2>();
                 for (int x = 1; x <= 4; x++)
                 {
@@ -95,7 +147,7 @@ namespace BlackJack_WPF
                     CurrentDeck.Push(v);
                 }
             }
-            public string DrawCard(Game game)
+            public string DrawCard(Round game)
             {
                 StringBuilder card = new StringBuilder();
                 Vector2 v;
@@ -134,12 +186,28 @@ namespace BlackJack_WPF
                 card.Append(".png");
                 return card.ToString();
             }
-            public string ShowCard()
+            public int CardsLeft()
             {
-                return this.CurrentDeck.Pop().ToString();
+                return this.CurrentDeck.Count;
+            }
+            public void ShuffleDeck()
+            {
+                ShuffleSound();
+                List<Vector2> newdeck = new List<Vector2>();
+                while (this.CurrentDeck.Count > 0)
+                {
+                    newdeck.Add(this.CurrentDeck.Pop());
+                }
+                Shuffle(newdeck);
+                foreach (Vector2 v in newdeck)
+                {
+                    CurrentDeck.Push(v);
+                }
+                return;
             }
             public static Deck NewDeck()
             {
+                ShuffleSound();
                 return new Deck();
             }
             private static Random rng = new Random();
@@ -154,6 +222,11 @@ namespace BlackJack_WPF
                     list[k] = list[n];
                     list[n] = value;
                 }
+            }
+            static void ShuffleSound()
+            {
+                SoundPlayer sound = new SoundPlayer("Sounds/card-shuffle.wav");
+                sound.Play();
             }
         }       
     }

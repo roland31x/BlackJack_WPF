@@ -23,24 +23,25 @@ namespace BlackJack_WPF
         public InsuranceWindow()
         {
             InitializeComponent();
+            maxbet.Text = $"Max bet: {Math.Min((App.BlackJackGame.CurrentBet / 2), App.BlackJackGame.Balance)}$";
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            
-            if(!int.TryParse(ins.Text,out insbet))
+
+            if (!int.TryParse(ins.Text, out insbet))
             {
-                ins.IsEnabled = false;
+                ins_b.IsEnabled = false;
             }
-            if (insbet > BlackJack.CurrentBet * 2)
+            if (insbet > Math.Min((App.BlackJackGame.CurrentBet / 2), App.BlackJackGame.Balance))
             {
-                ins.IsEnabled = false;
+                ins_b.IsEnabled = false;
             }
-            else ins.IsEnabled = true;
+            else ins_b.IsEnabled = true;
         }
         private void ins_b_Click(object sender, RoutedEventArgs e)
         {
-            BlackJack.InsuranceBet = insbet;
+            App.BlackJackGame.InsuranceBet = insbet;
             this.Close();
         }
     }
