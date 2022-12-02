@@ -24,7 +24,7 @@
                 </Image.RenderTransform>
             </Image>
             <Button Content="PLAY" Background="#FF008619" BorderBrush="Black" FontSize="72" FontFamily="Algerian" Click="Play_Button_Click" Height="140" Canvas.Left="257" Canvas.Top="280" Width="414"/>
-            <Button Background="#FFA50000" Content="HOW TO PLAY" FontSize="36" FontFamily="Algerian" Click="HowToPlay_Click" Height="81" Canvas.Left="330" Canvas.Top="520" Width="268"/>
+            <Button Background="#FFA50000" Content="HOW TO PLAY" FontSize="36" FontFamily="Algerian" Click="HowToPlay_Click" Height="81" Canvas.Left="330" Canvas.Top="568" Width="268" HorizontalAlignment="Center" VerticalAlignment="Top"/>
             <TextBlock Text="BLACKJACK GAME" Foreground="White" FontFamily="Algerian" FontSize="72" TextWrapping="Wrap" TextAlignment="Center" Height="177" Canvas.Left="202" Width="524"/>
             <Image Source="/Resources/ace_of_spades.png" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Height="177" Canvas.Top="290" Width="122">
                 <Image.RenderTransform>
@@ -56,6 +56,7 @@
                     </TransformGroup>
                 </Image.RenderTransform>
             </Image>
+            <Button Background="#FFC1CC00" Content="HIGH SCORES" FontSize="36" FontFamily="Algerian" Click="HighscoresB_Click" Height="71" Canvas.Left="330" Canvas.Top="458" Width="268" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         </Canvas>
     </Grid>
 </Page>

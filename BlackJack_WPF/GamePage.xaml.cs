@@ -51,6 +51,7 @@ namespace BlackJack_WPF
         }
         async void Play()
         {
+            Can_DD();
             ButtonCanvas.IsEnabled = false;
             await Task.Delay(500);
             await DrawNewCardTimed();
@@ -69,15 +70,45 @@ namespace BlackJack_WPF
                 FinalCompare();
             }
             ButtonCanvas.IsEnabled = true;
+            
         }
 
-        private void DoubleDown(object sender, RoutedEventArgs e)
+        private async void DoubleDown(object sender, RoutedEventArgs e)
         {
             Insurance_Button.Visibility = Visibility.Collapsed;
             thisGame.Balance -= thisGame.CurrentBet;
-            thisGame.CurrentBet *= 2;           
-            Hit(sender, e);           
-            DealersTurn();
+            thisGame.CurrentBet *= 2;
+            await DrawNewCardTimed();
+            if (thisRound.HandVal >= 21)
+            {
+                if (thisRound.HandVal == 21)
+                {
+                    DealersTurn();
+                    return;
+                }
+                if (thisRound.HandVal > 21)
+                {
+                    if (thisRound.WasInsured)
+                    {
+                        InsuranceCheck();
+                        return;
+                    }
+                    ButtonCanvas.Visibility = Visibility.Collapsed;
+                    GameEndScreen(3);
+                }
+            }
+            else
+            {
+                DealersTurn();
+            }
+        }
+        void Can_DD()
+        {
+            if (thisGame.Balance - thisGame.CurrentBet < 0)
+            {
+                DD_Button.Visibility = Visibility.Collapsed;
+                Canvas.SetLeft(ButtonCanvas, 169);
+            }
         }
 
         private void Stand(object sender, RoutedEventArgs e)
@@ -96,6 +127,7 @@ namespace BlackJack_WPF
                 if(thisRound.HandVal == 21)
                 {                  
                     DealersTurn();
+                    return;
                 }
                 if(thisRound.HandVal > 21)
                 {
@@ -371,10 +403,18 @@ namespace BlackJack_WPF
                 App.myDeck = BlackJack.Deck.NewDeck();
                 MessageBox.Show("Deck is low on cards, shuffling a new deck...");
             }
-            if(thisGame.Balance == 0)
+            if(thisGame.Balance <= 0)
             {
                 LoseSound();
-                MessageBox.Show($"You ran out of money!{Environment.NewLine}You managed to play a total of {thisGame.GamesPlayed} rounds before losing all your money.{Environment.NewLine}No problem, you can start again with 500$.");
+                if(thisGame.GetScore() > HighScore.LoadSave().GetScore())
+                {
+                    HighScoresWindow wind = new HighScoresWindow();
+                    wind.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show($"You ran out of money!{Environment.NewLine}You didn't beat the current highscore.{Environment.NewLine}You can try again starting with 500$!.");
+                }
                 App.BlackJackGame = new BlackJack.BlackJackStats();
                 App.myDeck = BlackJack.Deck.NewDeck();
             }

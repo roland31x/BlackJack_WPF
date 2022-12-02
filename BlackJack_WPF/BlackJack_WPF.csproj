@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="background_menu.jpg" />
     <None Remove="Resources\10_of_clubs.png" />
     <None Remove="Resources\10_of_diamonds.png" />
     <None Remove="Resources\10_of_hearts.png" />
@@ -67,6 +68,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="background_menu.jpg" />
     <Resource Include="Resources\10_of_clubs.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>

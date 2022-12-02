@@ -25,6 +25,7 @@ namespace BlackJack_WPF
         public Page1()
         {
             InitializeComponent();
+            HighScore.CreateDefaultSave();
         }
 
         private void Play_Button_Click(object sender, RoutedEventArgs e)
@@ -36,6 +37,12 @@ namespace BlackJack_WPF
         {
             Help help = new Help();
             help.ShowDialog();
+        }
+
+        private void HighscoresB_Click(object sender, RoutedEventArgs e)
+        {           
+            HighScoresWindow hs = new HighScoresWindow();
+            hs.ShowDialog();
         }
     }
 }

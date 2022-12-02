@@ -33,11 +33,19 @@ namespace BlackJack_WPF
             {
                 this.Name = s;
             }
+            public string GetName()
+            {
+                return this.Name;
+            }
+            public int GetScore()
+            {
+                return this.MaxBal;
+            }
             public void CheckScore()
             {
-                if(this.Balance > MaxBal)
+                if(this.Balance > this.MaxBal)
                 {
-                    MaxBal = this.Balance;
+                    this.MaxBal = this.Balance;
                 }
             }
         }
