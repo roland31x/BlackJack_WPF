@@ -26,6 +26,7 @@ namespace BlackJack_WPF
         {
             InitializeComponent();
             HighScore.CreateDefaultSave();
+            UserNameBlock.Text = "Welcome, " + Profile.CreateProfile() + "!";
         }
 
         private void Play_Button_Click(object sender, RoutedEventArgs e)
@@ -43,6 +44,13 @@ namespace BlackJack_WPF
         {           
             HighScoresWindow hs = new HighScoresWindow();
             hs.ShowDialog();
+        }
+
+        private void Settings_Click(object sender, RoutedEventArgs e)
+        {
+            SettingsWindow set = new SettingsWindow();
+            set.ShowDialog();
+            UserNameBlock.Text = "Welcome, " + Profile.CreateProfile() + "!";
         }
     }
 }

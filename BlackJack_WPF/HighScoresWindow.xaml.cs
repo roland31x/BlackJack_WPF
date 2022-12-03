@@ -25,19 +25,7 @@ namespace BlackJack_WPF
             PlayerName_box.Text = App.BlackJackGame.GetName();
             HighScoreBox.Text = HighScore.LoadSave().ToString();
             BalBox.Text = "HIGHEST BALANCE: " + App.BlackJackGame.GetScore().ToString() +"$";
-        }
-
-        private void PlayerName_box_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (PlayerName_box.Text.Length > 10)
-            {
-                SubmitB.IsEnabled = false;
-            }
-            else if (PlayerName_box.Text.Contains(':'))
-            {
-                SubmitB.IsEnabled = false;
-            }
-            else if (App.BlackJackGame.GetScore() < HighScore.LoadSave().GetScore())
+            if (App.BlackJackGame.GetScore() < HighScore.LoadSave().GetScore())
             {
                 SubmitB.IsEnabled = false;
             }

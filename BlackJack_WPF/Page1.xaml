@@ -57,6 +57,8 @@
                 </Image.RenderTransform>
             </Image>
             <Button Background="#FFC1CC00" Content="HIGH SCORES" FontSize="36" FontFamily="Algerian" Click="HighscoresB_Click" Height="71" Canvas.Left="330" Canvas.Top="458" Width="268" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <TextBlock x:Name="UserNameBlock" Foreground="White" FontFamily="Algerian" FontSize="22" TextWrapping="Wrap" TextAlignment="Center" Height="49" Canvas.Left="202" Width="524" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Top="231" Text="Welcome,"/>
+            <Button Background="White" Content="SETTINGS" FontFamily="Algerian" Click="Settings_Click" Height="27" Canvas.Left="414" Canvas.Top="190" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="18"/>
         </Canvas>
     </Grid>
 </Page>

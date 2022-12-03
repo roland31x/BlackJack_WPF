@@ -24,6 +24,7 @@ namespace BlackJack_WPF
         public MainWindow()
         {
             InitializeComponent();
+            App.PlayMusic();
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {

@@ -28,6 +28,7 @@
                         <TranslateTransform/>
                     </TransformGroup>
                 </TextBlock.RenderTransform></TextBlock>
+            <Button Background="White" Content="SETTINGS" FontFamily="Algerian" Click="Settings_Click" FontSize="18" Height="27" Canvas.Left="237" Canvas.Top="-71" Width="100"/>
         </Canvas>
     </Grid>
 </Page>
