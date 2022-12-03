@@ -59,7 +59,6 @@ namespace BlackJack_WPF
         }
         private void ToggleButton_Unchecked(object sender, RoutedEventArgs e)
         {
-            //App.StopMusic();
             MusicButton.Content = "ON";
             App.PlayMusic();
 

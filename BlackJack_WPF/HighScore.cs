@@ -54,7 +54,15 @@ namespace BlackJack_WPF
             string path = "EnSave.Data";
             string temp = "Temp.data";
             StringBuilder score = new StringBuilder();
-            DecryptFile(path, temp);
+            try
+            {
+                DecryptFile(path, temp);
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show("Save data corrupt, consider deleting the .data files in the .exe directory.");
+                return new HighScore("ERROR", 404);
+            }
             using (FileStream fs = File.OpenRead(temp))
             {
                 byte[] b = new byte[1];
@@ -66,9 +74,18 @@ namespace BlackJack_WPF
             }
             score.Replace(" ", "");
             score.Replace("$", "");
-            HighScore loaded = new HighScore(score.ToString().Split(':')[0], Convert.ToInt32(score.ToString().Split(':')[1]));
             File.Delete(temp);
-            return loaded;
+            try
+            {
+                HighScore loaded = new HighScore(score.ToString().Split(':')[0], Convert.ToInt32(score.ToString().Split(':')[1]));
+                return loaded;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Save data corrupt, consider deleting the .data files in the .exe directory.");
+                return new HighScore("ERROR", 404);
+            }
+            
         }
         public static void CreateDefaultSave()
         {
@@ -160,7 +177,7 @@ namespace BlackJack_WPF
                 fsOut.Close();
                 cs.Close();
                 fsCrypt.Close();
-
+                
             }
         }
     }

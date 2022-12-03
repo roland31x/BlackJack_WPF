@@ -37,21 +37,38 @@ namespace BlackJack_WPF
                 }
             }
         }
+        private static string CreateProfileNew()
+        {
+            string path = "Profile.data";
+            File.Delete(path);
+            using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate))
+            {
+                AddText(fs, "Username: Player");
+                return "Player";
+            }
+        }
 
         private static string LoadProfile(string path)
         {
-            StringBuilder score = new StringBuilder();
-            using (FileStream fs = File.OpenRead(path))
+            try
             {
-                byte[] b = new byte[1];
-                //UTF8Encoding tmp = new UTF8Encoding(true);
-                while (fs.Read(b, 0, b.Length) > 0)
+                StringBuilder score = new StringBuilder();
+                using (FileStream fs = File.OpenRead(path))
                 {
-                    score.Append((char)b[0]);
+                    byte[] b = new byte[1];
+                    //UTF8Encoding tmp = new UTF8Encoding(true);
+                    while (fs.Read(b, 0, b.Length) > 0)
+                    {
+                        score.Append((char)b[0]);
+                    }
                 }
+                string name = score.ToString().Split(':')[1].Replace(" ", "");
+                return name;
             }
-            string name = score.ToString().Split(':')[1].Replace(" ","");
-            return name;
+            catch (Exception)
+            {
+                return CreateProfileNew();
+            }           
         }
 
         private static void AddText(FileStream fs, string value)
