@@ -23,10 +23,10 @@
                     </TransformGroup>
                 </Image.RenderTransform>
             </Image>
-            <Button Content="PLAY" Background="#FF008619" BorderBrush="Black" FontSize="72" FontFamily="Algerian" Click="Play_Button_Click" Height="140" Canvas.Left="257" Canvas.Top="280" Width="414"/>
-            <Button Background="#FFA50000" Content="HOW TO PLAY" FontSize="36" FontFamily="Algerian" Click="HowToPlay_Click" Height="81" Canvas.Left="330" Canvas.Top="568" Width="268" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <Button Content="PLAY" Style="{StaticResource ButtonStyle2}" BorderBrush="Black" FontSize="72" FontFamily="Algerian" Click="Play_Button_Click" Height="140" Canvas.Left="257" Canvas.Top="280" Width="414" BorderThickness="1,1,1,1" Background="#FF05AB00"/>
+            <Button Background="#FFA50000" Content="HOW TO PLAY" FontSize="36" FontFamily="Algerian" Click="HowToPlay_Click" Height="81" Canvas.Left="330" Canvas.Top="568" Width="268" HorizontalAlignment="Center" VerticalAlignment="Top" Style="{DynamicResource ButtonStyle2}" BorderBrush="Black"/>
             <TextBlock Text="BLACKJACK GAME" Foreground="White" FontFamily="Algerian" FontSize="72" TextWrapping="Wrap" TextAlignment="Center" Height="177" Canvas.Left="202" Width="524"/>
-            <Image Source="/Resources/ace_of_spades.png" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Height="177" Canvas.Top="290" Width="122">
+            <Image Source="/Resources/ace_of_spades.png" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Height="163" Canvas.Top="289" Width="112" Canvas.Left="24" HorizontalAlignment="Left" VerticalAlignment="Center">
                 <Image.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -36,7 +36,7 @@
                     </TransformGroup>
                 </Image.RenderTransform>
             </Image>
-            <Image Source="/Resources/king_of_spades.png" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Height="172" Canvas.Left="68" Canvas.Top="293" Width="118">
+            <Image Source="/Resources/king_of_spades.png" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Height="165" Canvas.Left="83" Canvas.Top="290" Width="112" HorizontalAlignment="Left" VerticalAlignment="Center">
                 <Image.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -56,9 +56,9 @@
                     </TransformGroup>
                 </Image.RenderTransform>
             </Image>
-            <Button Background="#FFC1CC00" Content="HIGH SCORES" FontSize="36" FontFamily="Algerian" Click="HighscoresB_Click" Height="71" Canvas.Left="330" Canvas.Top="458" Width="268" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Button Background="#FFC1CC00" Content="HIGH SCORES" FontSize="36" FontFamily="Algerian" Click="HighscoresB_Click" Height="71" Canvas.Left="330" Canvas.Top="458" Width="268" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{DynamicResource ButtonStyle2}" BorderBrush="Black"/>
             <TextBlock x:Name="UserNameBlock" Foreground="White" FontFamily="Algerian" FontSize="22" TextWrapping="Wrap" TextAlignment="Center" Height="49" Canvas.Left="202" Width="524" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Top="231" Text="Welcome,"/>
-            <Button Background="White" Content="SETTINGS" FontFamily="Algerian" Click="Settings_Click" Height="27" Canvas.Left="414" Canvas.Top="190" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="18"/>
+            <Button Background="White" Content="SETTINGS" FontFamily="Algerian" Click="Settings_Click" Height="27" Canvas.Left="414" Canvas.Top="190" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="18" Style="{DynamicResource ButtonStyle2}"/>
         </Canvas>
     </Grid>
 </Page>

@@ -32,7 +32,7 @@
             <TextBlock FontFamily="Algerian" FontSize="14" TextWrapping="Wrap" Foreground="Black" TextAlignment="Center" Height="68" Canvas.Left="44" Canvas.Top="266" Width="113"><Run Text="Face Values"/><LineBreak/><Run Text="( 2 to 10 )"/></TextBlock>
             <TextBlock FontFamily="Algerian" FontSize="24" TextWrapping="Wrap" Foreground="Black" Text="10" TextAlignment="Center" Height="34" Canvas.Left="275" Canvas.Top="266" Width="152"/>
             <TextBlock FontFamily="Algerian" FontSize="24" TextWrapping="Wrap" Foreground="Black" TextAlignment="Center" Height="34" Canvas.Left="530" Canvas.Top="266" Width="152"><Run Text="1 OR 11"/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
-            <Button Background="#FFAB0000" Content="NEXT" FontSize="16" FontFamily="Algerian" Click="Button_Click" Height="37" Width="85" HorizontalAlignment="Left" Canvas.Left="673" Canvas.Top="507" VerticalAlignment="Top"/>
+            <Button Background="#FFAB0000" Content="NEXT" FontSize="16" FontFamily="Algerian" Click="Button_Click" Height="37" Width="85" HorizontalAlignment="Left" Canvas.Left="673" Canvas.Top="507" VerticalAlignment="Top" Style="{DynamicResource ButtonStyle2}"/>
         </Canvas>
     </Grid>
 </Page>

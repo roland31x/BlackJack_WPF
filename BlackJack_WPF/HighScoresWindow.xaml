@@ -18,7 +18,7 @@
             <TextBlock Text="YOUR NAME:" FontFamily="Algerian" FontSize="48" TextAlignment="Center" Height="66" Canvas.Top="261" Width="290" Foreground="White"/>
             <TextBlock x:Name="PlayerName_box" Text="" FontFamily="Algerian" FontSize="48" Height="66" Canvas.Left="304" Canvas.Top="261" Width="290" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White"/>
             <TextBlock x:Name="BalBox" Text="HIGHEST BALANCE:" FontFamily="Algerian" FontSize="36" Height="66" Canvas.Top="332" Width="680" Foreground="White"/>
-            <Button x:Name="SubmitB" Content="SUBMIT" FontSize="24" FontFamily="Algerian" Background="#FF00FFFE" IsEnabled="False" Click="SubmitB_Click" Height="58" Canvas.Left="244" Canvas.Top="403" Width="121"/>
+            <Button x:Name="SubmitB" Content="SUBMIT" FontSize="24" FontFamily="Algerian" Background="#FF00FFFE" IsEnabled="False" Click="SubmitB_Click" Height="58" Canvas.Left="244" Canvas.Top="403" Width="121" Style="{DynamicResource ButtonStyle2}"/>
         </Canvas>
     </Grid>
 </Window>

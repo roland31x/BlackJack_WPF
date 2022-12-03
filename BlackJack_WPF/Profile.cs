@@ -50,7 +50,7 @@ namespace BlackJack_WPF
                     score.Append((char)b[0]);
                 }
             }
-            string name = score.ToString().Split(':')[1];
+            string name = score.ToString().Split(':')[1].Replace(" ","");
             return name;
         }
 

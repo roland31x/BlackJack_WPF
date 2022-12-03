@@ -16,7 +16,7 @@
             <TextBlock TextAlignment="Center" TextWrapping="Wrap" Foreground="Black" FontSize="14" Text="&#xA;Insurance happens when the face card of the dealer is an ace. &#xD;&#xA;If the dealer gets a blackjack from that hand, insurance is paid out regardless of game outcome.&#xA;&#xA;House rule:  &#xA;You can bet a maximum of half the current bet on insurance.&#xA;&#xA;Enter your insurance bet:" Height="170" Canvas.Top="46" Width="480" FontFamily="Algerian"/>
             <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="Insurance Pays 2:1" FontSize="36" FontFamily="Algerian" Height="55" Width="480"/>
             <TextBox x:Name="ins" TextChanged="TextBox_TextChanged" Height="61" Canvas.Left="127" Canvas.Top="221" Width="227" FontSize="42" TextAlignment="Center"/>
-            <Button x:Name="ins_b" Content="PLACE" FontSize="24" FontFamily="Algerian" Background="#FF0B6D00" IsEnabled="False" Click="ins_b_Click" Height="40" Canvas.Left="188" Canvas.Top="303" Width="105"/>
+            <Button x:Name="ins_b" Content="PLACE" FontSize="24" FontFamily="Algerian" Background="#FF0B6D00" IsEnabled="False" Click="ins_b_Click" Height="40" Canvas.Left="188" Canvas.Top="303" Width="105" Style="{DynamicResource ButtonStyle2}"/>
             <TextBlock x:Name="maxbet" TextAlignment="Center" TextWrapping="Wrap" Text="" FontFamily="Algerian" Height="22" Width="193" HorizontalAlignment="Center" VerticalAlignment="Center" Canvas.Left="144" Canvas.Top="281"/>
         </Canvas>
     </Grid>
