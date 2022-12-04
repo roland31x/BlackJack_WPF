@@ -58,7 +58,7 @@ namespace BlackJack_WPF
             {
                 DecryptFile(path, temp);
             }
-            catch(Exception e)
+            catch(Exception)
             {
                 MessageBox.Show("Save data corrupt, consider deleting the .data files in the .exe directory.");
                 return new HighScore("ERROR", 404);
@@ -115,7 +115,7 @@ namespace BlackJack_WPF
 
             try
             {
-                string password = @"myKey123"; // Your Key Here
+                string password = @"R0L2004X"; // Your Key Here
                 UnicodeEncoding UE = new UnicodeEncoding();
                 byte[] key = UE.GetBytes(password);
 
@@ -143,7 +143,7 @@ namespace BlackJack_WPF
             {
                 MessageBox.Show("Encryption failed!", "Error");
             }
-        }
+}
         ///<summary>
         /// Steve Lydford - 12/05/2008.
         ///
@@ -155,7 +155,7 @@ namespace BlackJack_WPF
         {
 
             {
-                string password = @"myKey123"; // Your Key Here
+                string password = @"R0L2004X"; // Your Key Here
 
                 UnicodeEncoding UE = new UnicodeEncoding();
                 byte[] key = UE.GetBytes(password);
