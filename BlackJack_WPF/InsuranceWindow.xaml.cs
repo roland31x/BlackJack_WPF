@@ -37,6 +37,10 @@ namespace BlackJack_WPF
             {
                 ins_b.IsEnabled = false;
             }
+            if (insbet <= 0)
+            {
+                ins_b.IsEnabled = false;
+            }
             else ins_b.IsEnabled = true;
         }
         private void ins_b_Click(object sender, RoutedEventArgs e)

@@ -52,6 +52,7 @@ namespace BlackJack_WPF
         async void Play()
         {
             Can_DD();
+            UpdateUI();
             ButtonCanvas.IsEnabled = false;
             await Task.Delay(500);
             await DrawNewCardTimed();
@@ -67,17 +68,18 @@ namespace BlackJack_WPF
             {
                 Natural_P = true;
                 DealersTurn();
-                FinalCompare();
+                return;
             }
             ButtonCanvas.IsEnabled = true;
             
         }
 
-        private async void DoubleDown(object sender, RoutedEventArgs e)
+        async void DoubleDown(object sender, RoutedEventArgs e)
         {
             Insurance_Button.Visibility = Visibility.Collapsed;
             thisGame.Balance -= thisGame.CurrentBet;
             thisGame.CurrentBet *= 2;
+            ButtonCanvas.Visibility = Visibility.Collapsed;
             await DrawNewCardTimed();
             if (thisRound.HandVal >= 21)
             {
@@ -88,13 +90,8 @@ namespace BlackJack_WPF
                 }
                 if (thisRound.HandVal > 21)
                 {
-                    if (thisRound.WasInsured)
-                    {
-                        InsuranceCheck();
-                        return;
-                    }
-                    ButtonCanvas.Visibility = Visibility.Collapsed;
-                    GameEndScreen(3);
+                    FinalCompare();
+                    return;
                 }
             }
             else
@@ -111,13 +108,13 @@ namespace BlackJack_WPF
             }
         }
 
-        private void Stand(object sender, RoutedEventArgs e)
+        void Stand(object sender, RoutedEventArgs e)
         {
             Insurance_Button.Visibility= Visibility.Collapsed;
             DealersTurn();
         }
 
-        private async void Hit(object sender, RoutedEventArgs e)
+        async void Hit(object sender, RoutedEventArgs e)
         {
             Insurance_Button.Visibility = Visibility.Collapsed;
             ButtonCanvas.IsEnabled = false;
@@ -131,13 +128,9 @@ namespace BlackJack_WPF
                 }
                 if(thisRound.HandVal > 21)
                 {
-                    if (thisRound.WasInsured)
-                    {
-                        InsuranceCheck();
-                        return;
-                    }
                     ButtonCanvas.Visibility = Visibility.Collapsed;
-                    GameEndScreen(3);
+                    FinalCompare();
+                    return;
                 }
             }
             ButtonCanvas.IsEnabled = true;
@@ -156,17 +149,17 @@ namespace BlackJack_WPF
             App.BlackJackGame.Balance -= App.BlackJackGame.InsuranceBet;
 
         }
-        void CardSound()
+        static void CardSound()
         {
             SoundPlayer sound = new SoundPlayer("Sounds/Card-flip-sound-effect.wav");
             sound.Play();
         }
-        void WinSound()
+        static void WinSound()
         {
             SoundPlayer sound = new SoundPlayer("Sounds/app-29.wav");
             sound.Play();
         }
-        void LoseSound()
+        static void LoseSound()
         {
             SoundPlayer sound = new SoundPlayer("Sounds/Lose-sound.wav");
             sound.Play();
@@ -190,16 +183,18 @@ namespace BlackJack_WPF
         private async void InsuranceCheck()
         {
             ButtonCanvas.Visibility = Visibility.Collapsed;
-            thisRound.D_AddCard(DealersHValue);
-            d_images[1].Source = DealersHiddenCard;
-            thisRound.D_HandCalc();
+            if(thisRound.HandVal > 21)
+            {
+                thisRound.D_AddCard(DealersHValue);
+                d_images[1].Source = DealersHiddenCard;
+                thisRound.D_HandCalc();
+            }
             UpdateUI();
             await Task.Delay(1000);
             if (thisRound.NaturalBlackJackCheck_D())
             {
                 MessageBox.Show($"Insurance paid off! You get ${thisGame.InsuranceBet * 2} back.");
                 thisGame.Balance += thisGame.InsuranceBet * 3;
-                GameEndScreen(10);
             }
         }
         private async void DealersTurn()
@@ -228,11 +223,7 @@ namespace BlackJack_WPF
         {
             if (thisRound.WasInsured) 
             {
-                if(Natural_D)
-                {
-                    MessageBox.Show($"Insurance paid off! You get ${thisGame.InsuranceBet * 2} back.");
-                    thisGame.Balance += thisGame.InsuranceBet * 3;
-                }
+                InsuranceCheck();
             }
             if (Natural_D && !Natural_P)
             {

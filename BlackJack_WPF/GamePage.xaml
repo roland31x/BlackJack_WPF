@@ -14,14 +14,14 @@
         </Grid.Background>
 
         <Canvas x:Name="MainCanvas" Margin="106,50,245,254">
-            <TextBlock x:Name="EndScreen" Text="" Foreground="White" FontSize="50" Height="95" Canvas.Left="-19" Canvas.Top="291" Width="1088" Opacity="0.8" FontFamily="Algerian" HorizontalAlignment="Left" VerticalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap"/>
+            <TextBlock x:Name="EndScreen" Text="" Foreground="White" FontSize="50" Height="95" Canvas.Top="286" Width="1115" Opacity="0.8" FontFamily="Algerian" HorizontalAlignment="Left" VerticalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap" Canvas.Left="-32"/>
             <TextBlock x:Name="HandVal" Text="Your Hand:" Foreground="White" FontSize="36" Height="51" Canvas.Left="334" Canvas.Top="381" Width="361" Opacity="0.5" FontFamily="Algerian"/>
-            <TextBlock x:Name="HouseRule" Foreground="White" FontSize="24" Height="110" Canvas.Left="-58" Canvas.Top="189" Width="314" HorizontalAlignment="Left" VerticalAlignment="Top" Opacity="0.5" TextWrapping="Wrap" TextAlignment="Center" Text="House Rule:&#xA;Dealer must draw on 16 and stand on 17." FontFamily="Algerian"/>
+            <TextBlock x:Name="HouseRule" Foreground="White" FontSize="24" Height="110" Canvas.Left="-69" Canvas.Top="163" Width="314" HorizontalAlignment="Left" VerticalAlignment="Top" Opacity="0.5" TextWrapping="Wrap" TextAlignment="Center" Text="House Rule:&#xA;Dealer must draw on 16 and stand on 17." FontFamily="Algerian"/>
             <TextBlock x:Name="BetVal" Text="Current Bet:" Foreground="White" FontSize="36" Height="50" Width="358" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Algerian" Opacity="0.6" Canvas.Left="-32"/>
-            <Canvas x:Name="ButtonCanvas" HorizontalAlignment="Left" Height="75" Canvas.Left="269" Canvas.Top="301" VerticalAlignment="Center" Width="551">
-                <Button x:Name ="Hit_Button" Content="Hit" FontSize="36" FontFamily="Algerian" Background="#FFEB9000" Click="Hit" Height="52" Canvas.Left="208" Canvas.Top="11" Width="120" Style="{DynamicResource ButtonStyle2}"/>
-                <Button x:Name ="Stand_Button" Content="Stand" FontSize="34" FontFamily="Algerian" Background="#FF10ED00" Click="Stand" Height="74" Canvas.Left="416" Canvas.Top="1" Width="135" Style="{DynamicResource ButtonStyle2}"/>
-                <Button x:Name ="DD_Button" Content="Double&#xA;  Down" FontSize="22" FontFamily="Algerian" Background="#FFC10000" Click="DoubleDown" Height="74" Width="130" Style="{DynamicResource ButtonStyle2}"/>
+            <Canvas x:Name="ButtonCanvas" HorizontalAlignment="Center" Height="69" Canvas.Left="269" Canvas.Top="298" VerticalAlignment="Top" Width="551">
+                <Button x:Name ="Hit_Button" Content="Hit" FontSize="36" FontFamily="Algerian" Background="#FFEB9000" Click="Hit" Height="75" Canvas.Left="214" Width="120" Style="{DynamicResource ButtonStyle2}" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Top="-11"/>
+                <Button x:Name ="Stand_Button" Content="Stand" FontSize="34" FontFamily="Algerian" Background="#FF10ED00" Click="Stand" Height="74" Canvas.Left="416" Canvas.Top="-10" Width="135" Style="{DynamicResource ButtonStyle2}" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Button x:Name ="DD_Button" Content="Double&#xA;  Down" FontSize="22" FontFamily="Algerian" Background="#FFC10000" Click="DoubleDown" Height="74" Width="130" Style="{DynamicResource ButtonStyle2}" HorizontalAlignment="Center" Canvas.Top="-10" VerticalAlignment="Center"/>
             </Canvas>
             <TextBlock x:Name="DealerVal" Text="Dealers Hand:" Foreground="White" FontSize="24" Height="31" Canvas.Left="357" Canvas.Top="250" Width="272" Opacity="0.5" FontFamily="Algerian" HorizontalAlignment="Left" VerticalAlignment="Center"/>
             <Button x:Name ="Insurance_Button" Content="Insurance" FontSize="22" FontFamily="Algerian" Background="#FF0086ED" Click="Insurance_Button_Click" Canvas.Left="881" Canvas.Top="189" HorizontalAlignment="Left" VerticalAlignment="Top" Width="142" Style="{DynamicResource ButtonStyle2}" Visibility="Collapsed"/>

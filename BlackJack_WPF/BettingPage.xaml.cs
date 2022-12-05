@@ -43,6 +43,12 @@ namespace BlackJack_WPF
                 StartGame.Opacity = 0.1;
                 return;
             }
+            if (betval <= 0)
+            {
+                StartGame.IsEnabled = false;
+                StartGame.Opacity = 0.1;
+                return;
+            }
             else
             {
 

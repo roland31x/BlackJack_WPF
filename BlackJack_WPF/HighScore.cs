@@ -99,7 +99,7 @@ namespace BlackJack_WPF
             {
                 using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate))
                 {
-                    AddText(fs, $"DANIEL: 3000$");
+                    AddText(fs, $"DEFAULT JACK: 3000$");
                 }
                 EncryptFile(path, path2);
                 File.Delete(path);

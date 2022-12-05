@@ -37,6 +37,11 @@ namespace BlackJack_WPF
                 NameSetButton.IsEnabled = false;
                 return;
             }
+            else if (TextBName.Text == "")
+            {
+                NameSetButton.IsEnabled = false;
+                return;
+            }
             else if(TextBName.Text.Contains(':'))
             {
                 NameSetButton.IsEnabled = false;
