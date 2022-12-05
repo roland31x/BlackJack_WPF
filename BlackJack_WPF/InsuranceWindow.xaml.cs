@@ -32,14 +32,17 @@ namespace BlackJack_WPF
             if (!int.TryParse(ins.Text, out insbet))
             {
                 ins_b.IsEnabled = false;
+                return;
             }
             if (insbet > Math.Min((App.BlackJackGame.CurrentBet / 2), App.BlackJackGame.Balance))
             {
                 ins_b.IsEnabled = false;
+                return;
             }
             if (insbet <= 0)
             {
                 ins_b.IsEnabled = false;
+                return;
             }
             else ins_b.IsEnabled = true;
         }
