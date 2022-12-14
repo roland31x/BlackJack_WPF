@@ -6,16 +6,25 @@
         xmlns:local="clr-namespace:BlackJack_WPF"
         Icon="Resources/MenuPics/icon.ico"
         mc:Ignorable="d"
+        PreviewKeyDown="Window_PreviewKeyDown"
         ResizeMode="NoResize"
         Title="SettingsWindow" Height="450" Width="800">
     <Grid Background="#FF00911B">
-        <Canvas Margin="47,10,28,91">
-            <TextBlock Text="USERNAME: " TextAlignment="Center" FontFamily="Algerian" FontSize="48" Height="66" Canvas.Top="108" Width="287"/>
-            <TextBlock Text="APP SETTINGS " TextAlignment="Center" FontFamily="Algerian" FontSize="48" Height="66" Canvas.Left="177" Width="352"/>
-            <TextBox x:Name="TextBName" TextAlignment="Center" FontFamily="Algerian" FontSize="48" TextChanged="TextBox_TextChanged" Height="66" Canvas.Left="292" Canvas.Top="108" Width="340"/>
-            <ToggleButton x:Name="MusicButton" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked" Content="ON" FontFamily="Algerian" FontSize="36" IsChecked="False" Height="54" Canvas.Left="292" Canvas.Top="273" Width="125"/>
-            <TextBlock Text="MUSIC:" TextAlignment="Right" FontFamily="Algerian" FontSize="48" Height="66" Canvas.Top="267" Width="263"/>
-            <Button x:Name="NameSetButton" Click="SetNameB" Content="SET" FontFamily="Algerian" FontSize="36" Background="#FF00E4FF" IsEnabled="False" Height="66" Canvas.Left="637" Canvas.Top="108" Width="88"/>
+        <Canvas Margin="0,10,0,10" HorizontalAlignment="Center" Width="780">
+            <TextBlock Text="USERNAME: " TextAlignment="Center" FontFamily="Algerian" FontSize="48" Height="66" Canvas.Top="108" Width="287" HorizontalAlignment="Left" Canvas.Left="25" VerticalAlignment="Center"/>
+            <TextBlock x:Name="FocusThis" Text="APP SETTINGS " TextAlignment="Center" FontFamily="Algerian" FontSize="48" Height="66" Canvas.Left="214" Width="352" Canvas.Top="10" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBox x:Name="TextBName" TextAlignment="Center" FontFamily="Algerian" FontSize="48" TextChanged="TextBox_TextChanged" Height="66" Canvas.Left="328" Canvas.Top="108" Width="328" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <ToggleButton x:Name="MusicButton" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked" Content="ON" FontFamily="Algerian" FontSize="36" IsChecked="False" Height="54" Canvas.Left="328" Canvas.Top="210" Width="124" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <TextBlock Text="MUSIC:" TextAlignment="Right" FontFamily="Algerian" FontSize="48" Height="66" Canvas.Top="204" Width="266" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="25"/>
+            <Button x:Name="NameSetButton" Click="SetNameB" Content="SET" FontFamily="Algerian" FontSize="36" Background="#FF00E4FF" IsEnabled="False" Height="66" Canvas.Left="661" Canvas.Top="108" Width="88" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Button x:Name="QuitGameButton" Click="QuitGameButton_Click" Content="QUIT GAME" FontFamily="Algerian" FontSize="36" Height="66" Canvas.Left="276" Canvas.Top="310" Width="228" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{DynamicResource ButtonStyle2}">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFFF5656"/>
+                        <GradientStop Color="Red" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
         </Canvas>
     </Grid>
 </Window>

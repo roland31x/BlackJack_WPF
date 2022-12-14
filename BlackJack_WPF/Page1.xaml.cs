@@ -27,6 +27,14 @@ namespace BlackJack_WPF
             InitializeComponent();
             HighScore.CreateDefaultSave();
             UserNameBlock.Text = "Welcome, " + Profile.CreateProfile() + "!";
+            this.Focusable = true;
+            Loaded += Page1_Loaded;
+            
+        }
+
+        private void Page1_Loaded(object sender, RoutedEventArgs e)
+        {
+            startb.Focus();
         }
 
         private void Play_Button_Click(object sender, RoutedEventArgs e)
@@ -51,6 +59,15 @@ namespace BlackJack_WPF
             SettingsWindow set = new SettingsWindow();
             set.ShowDialog();
             UserNameBlock.Text = "Welcome, " + Profile.CreateProfile() + "!";
+        }
+
+        private void Page_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                Play_Button_Click(sender, e);
+            }
+            
         }
     }
 }

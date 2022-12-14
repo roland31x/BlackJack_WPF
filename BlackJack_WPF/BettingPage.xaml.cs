@@ -26,6 +26,7 @@ namespace BlackJack_WPF
         {
             InitializeComponent();
             DeckCount.Text = $"{App.myDeck.CardsLeft()}";
+            BetInput.Focus();
             UpdateUI();
         }
 
@@ -93,6 +94,18 @@ namespace BlackJack_WPF
         {
             SettingsWindow set = new SettingsWindow();
             set.ShowDialog();
+         //   set.Close();
+        }
+
+        private void Page_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                if (StartGame.IsEnabled)
+                {
+                    StartGame_Click(sender, e);
+                }
+            }
         }
     }
 }

@@ -4,7 +4,8 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BlackJack_WPF"
-      mc:Ignorable="d" 
+      mc:Ignorable="d"
+      PreviewKeyDown="Page_PreviewKeyDown"
       d:DesignHeight="720" d:DesignWidth="1280"
       Title="MainMenu">
 
@@ -23,7 +24,7 @@
                     </TransformGroup>
                 </Image.RenderTransform>
             </Image>
-            <Button Content="PLAY" Style="{StaticResource ButtonStyle2}" BorderBrush="Black" FontSize="72" FontFamily="Algerian" Click="Play_Button_Click" Height="140" Canvas.Left="257" Canvas.Top="280" Width="414" BorderThickness="1,1,1,1" Background="#FF05AB00"/>
+            <Button x:Name="startb" Content="PLAY" Style="{StaticResource ButtonStyle2}" BorderBrush="Black" FontSize="72" FontFamily="Algerian" Click="Play_Button_Click" Height="140" Canvas.Left="257" Canvas.Top="280" Width="414" BorderThickness="1,1,1,1" Background="#FF05AB00" Focusable="True"/>
             <Button Background="#FFA50000" Content="HOW TO PLAY" FontSize="36" FontFamily="Algerian" Click="HowToPlay_Click" Height="81" Canvas.Left="330" Canvas.Top="568" Width="268" HorizontalAlignment="Center" VerticalAlignment="Top" Style="{DynamicResource ButtonStyle2}" BorderBrush="Black"/>
             <TextBlock Text="BLACKJACK GAME" Foreground="White" FontFamily="Algerian" FontSize="72" TextWrapping="Wrap" TextAlignment="Center" Height="177" Canvas.Left="202" Width="524"/>
             <Image Source="/Resources/ace_of_spades.png" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Height="163" Canvas.Top="289" Width="112" Canvas.Left="24" HorizontalAlignment="Left" VerticalAlignment="Center">

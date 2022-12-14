@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -74,6 +75,46 @@ namespace BlackJack_WPF
             App.BlackJackGame.SetName(TextBName.Text);
             Profile.SaveName(App.BlackJackGame);
             NameSetButton.IsEnabled = false;
+        }
+
+        private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                NameSetButton.Focus();
+                if (NameSetButton.IsEnabled)
+                {
+                    SetNameB(sender, e);
+                }
+                NameSetButton.Focus();
+            }
+            if (TextBName.IsFocused)
+            {
+                return;
+            }
+            if(e.Key == Key.M)
+            {
+                if (MusicButton.IsChecked == false)
+                {
+                    MusicButton.IsChecked = true;
+                    ToggleButton_Checked(sender, e);
+                }
+                else
+                {
+                    MusicButton.IsChecked = false;
+                    ToggleButton_Unchecked(sender, e);
+                }
+            }
+            if(e.Key == Key.Escape)
+            {
+                this.Close();
+            }
+        }
+
+        private void QuitGameButton_Click(object sender, RoutedEventArgs e)
+        {
+            App.ParentWindowRef.Close();
+            this.Close();
         }
     }
 }

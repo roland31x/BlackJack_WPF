@@ -283,6 +283,7 @@ namespace BlackJack_WPF
                 case 12: EndScreen.Text = $"NATURAL BLACKJACKS!!! PUSH!"; thisGame.Balance += thisGame.CurrentBet; break;
             }
             NewGameButton.Visibility = Visibility.Visible;
+            NewGameButton.Focus();
         }
         private void DrawNewCard()
         {
@@ -312,6 +313,7 @@ namespace BlackJack_WPF
                     Canvas.SetLeft(images[i], Canvas.GetLeft(images[i]) + (40 * (images.Count - i)));
                 }
             }
+            
             thisRound.HandCalc();
             UpdateUI();
 
@@ -411,6 +413,17 @@ namespace BlackJack_WPF
             }
             App.BlackJackGame.CheckScore();
             App.ParentWindowRef.ParentFrame.Navigate(new BettingPage());
+        }
+
+        private void Page_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                if(NewGameButton.Visibility == Visibility.Visible)
+                {
+                    NewGame(sender, e);
+                }              
+            }
         }
     }
 }

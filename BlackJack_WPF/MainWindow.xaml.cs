@@ -24,13 +24,49 @@ namespace BlackJack_WPF
         public MainWindow()
         {
             InitializeComponent();
+            this.PreviewKeyDown += MusicCheck;
+            this.PreviewKeyDown += SettingsMenu;
             App.PlayMusic();
         }
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             App.ParentWindowRef = this;
             this.ParentFrame.Navigate(new Page1());
         }
+        private void MusicCheck(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.M)
+            {
+                if (App.MusicPlaying)
+                {
+                    App.StopMusic();
+                }
+                else 
+                { 
+                    App.PlayMusic(); 
+                }
+            }
+        }
+        private void SettingsMenu(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+            {
+                object content = this.Content;
+                SettingsWindow set = new SettingsWindow();
+                set.ShowDialog();
+                try
+                {
+                    if (((content as DockPanel).Children[0] as Frame).Content is Page1)
+                    {
+                        (((content as DockPanel).Children[0] as Frame).Content as Page1).UserNameBlock.Text = "Welcome, " + Profile.CreateProfile() + "!";
+                    }
+                }
+                catch (NullReferenceException)
+                {
+                    MessageBox.Show("Something went wrong... send help.");
+                }
+            }
+        }
     }
-
 }

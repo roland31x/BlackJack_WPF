@@ -27,7 +27,7 @@ namespace BlackJack_WPF
                 Balance = 500;
                 MaxBal = 500;
                 GamesPlayed = 0;
-                Name = Profile.CreateProfile();
+               // Name = Profile.CreateProfile();
             }
             public void SetName(string s)
             {
@@ -226,15 +226,13 @@ namespace BlackJack_WPF
                 {
                     n--;
                     int k = rng.Next(n + 1);
-                    T value = list[k];
-                    list[k] = list[n];
-                    list[n] = value;
+                    (list[n], list[k]) = (list[k], list[n]);
                 }
             }
             static void ShuffleSound()
             {
-                SoundPlayer sound = new SoundPlayer("Sounds/card-shuffle.wav");
-                sound.Play();
+                //SoundPlayer sound = new SoundPlayer("Sounds/card-shuffle.wav");
+                //sound.Play();
             }
         }       
     }
