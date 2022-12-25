@@ -23,7 +23,7 @@ namespace BlackJack_WPF
         public SettingsWindow()
         {
             InitializeComponent();
-            TextBName.Text = Profile.CreateProfile();
+            TextBName.Text = App.BlackJackGame.GetName();
             if (App.MusicPlaying)
             {
                 MusicButton.IsChecked = false;
@@ -48,7 +48,7 @@ namespace BlackJack_WPF
                 NameSetButton.IsEnabled = false;
                 return;
             }
-            else if(TextBName.Text == Profile.CreateProfile())
+            else if(TextBName.Text == App.BlackJackGame.GetName())
             {
                 NameSetButton.IsEnabled = false;
                 return;

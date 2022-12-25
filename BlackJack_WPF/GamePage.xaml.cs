@@ -34,7 +34,7 @@ namespace BlackJack_WPF
         
         List<Image> d_images = new List<Image>();
         
-        ImageSource DealersHiddenCard;
+        ImageSource? DealersHiddenCard;
 
         bool Natural_P = false;
         bool Natural_D = false;
@@ -412,6 +412,7 @@ namespace BlackJack_WPF
                 App.myDeck = BlackJack.Deck.NewDeck();
             }
             App.BlackJackGame.CheckScore();
+
             App.ParentWindowRef.ParentFrame.Navigate(new BettingPage());
         }
 
@@ -424,6 +425,10 @@ namespace BlackJack_WPF
                     NewGame(sender, e);
                 }              
             }
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
         }
     }
 }

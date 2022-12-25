@@ -33,8 +33,9 @@ namespace BlackJack_WPF
                 using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate))
                 {
                     AddText(fs, "Username: Player");
-                    return "Player";
+                    
                 }
+                return "Player";
             }
         }
         private static string CreateProfileNew()
@@ -44,8 +45,9 @@ namespace BlackJack_WPF
             using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate))
             {
                 AddText(fs, "Username: Player");
-                return "Player";
+                
             }
+            return "Player";
         }
 
         private static string LoadProfile(string path)

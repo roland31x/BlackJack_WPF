@@ -99,7 +99,7 @@ namespace BlackJack_WPF
             {
                 using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate))
                 {
-                    AddText(fs, $"DEFAULT JACK: 3000$");
+                    AddText(fs, $"DEFAULT-JACK: 3000$");
                 }
                 EncryptFile(path, path2);
                 File.Delete(path);
@@ -110,74 +110,71 @@ namespace BlackJack_WPF
             byte[] info = new UTF8Encoding(true).GetBytes(value);
             fs.Write(info, 0, info.Length);
         }
-        private static void EncryptFile(string inputFile, string outputFile)
+
+        private static readonly string _aesKeyString = "R0L4NDAESENCRYPT"; // Replace the ellipsis with your AES key
+
+        public static void EncryptFile(string inputFilePath, string outputFilePath)
         {
-
-            try
+            // Create a new AES algorithm with the key
+            using (var aes = Aes.Create())
             {
-                string password = @"R0L2004X"; // Your Key Here
-                UnicodeEncoding UE = new UnicodeEncoding();
-                byte[] key = UE.GetBytes(password);
+                aes.Key = Encoding.UTF8.GetBytes(_aesKeyString);
+                aes.GenerateIV();
 
-                string cryptFile = outputFile;
-                FileStream fsCrypt = new FileStream(cryptFile, FileMode.Create);
+                // Open the input file for reading
+                using (var inputStream = File.OpenRead(inputFilePath))
+                {
+                    // Open the output file for writing
+                    using (var outputStream = File.Create(outputFilePath))
+                    {
+                        // Write the IV to the output file
+                        outputStream.Write(aes.IV, 0, aes.IV.Length);
 
-                RijndaelManaged RMCrypto = new RijndaelManaged();
-
-                CryptoStream cs = new CryptoStream(fsCrypt,
-                    RMCrypto.CreateEncryptor(key, key),
-                    CryptoStreamMode.Write);
-
-                FileStream fsIn = new FileStream(inputFile, FileMode.Open);
-
-                int data;
-                while ((data = fsIn.ReadByte()) != -1)
-                    cs.WriteByte((byte)data);
-
-
-                fsIn.Close();
-                cs.Close();
-                fsCrypt.Close();
+                        // Create an encryptor to perform the encryption
+                        using (var encryptor = aes.CreateEncryptor())
+                        {
+                            // Create a CryptoStream to encrypt the data
+                            using (var cryptoStream = new CryptoStream(outputStream, encryptor, CryptoStreamMode.Write))
+                            {
+                                // Copy the data from the input stream to the CryptoStream
+                                inputStream.CopyTo(cryptoStream);
+                            }
+                        }
+                    }
+                }
             }
-            catch
-            {
-                MessageBox.Show("Encryption failed!", "Error");
-            }
-}
-        ///<summary>
-        /// Steve Lydford - 12/05/2008.
-        ///
-        /// Decrypts a file using Rijndael algorithm.
-        ///</summary>
-        ///<param name="inputFile"></param>
-        ///<param name="outputFile"></param>
-        private static void DecryptFile(string inputFile, string outputFile)
+        }
+
+        public static void DecryptFile(string inputFilePath, string outputFilePath)
         {
-
+            // Create a new AES algorithm with the key
+            using (var aes = Aes.Create())
             {
-                string password = @"R0L2004X"; // Your Key Here
+                aes.Key = Encoding.UTF8.GetBytes(_aesKeyString);
 
-                UnicodeEncoding UE = new UnicodeEncoding();
-                byte[] key = UE.GetBytes(password);
+                // Open the input file for reading
+                using (var inputStream = File.OpenRead(inputFilePath))
+                {
+                    // Read the IV from the input file
+                    var iv = new byte[aes.IV.Length];
+                    inputStream.Read(iv, 0, iv.Length);
+                    aes.IV = iv;
 
-                FileStream fsCrypt = new FileStream(inputFile, FileMode.Open);
-
-                RijndaelManaged RMCrypto = new RijndaelManaged();
-
-                CryptoStream cs = new CryptoStream(fsCrypt,
-                    RMCrypto.CreateDecryptor(key, key),
-                    CryptoStreamMode.Read);
-
-                FileStream fsOut = new FileStream(outputFile, FileMode.Create);
-
-                int data;
-                while ((data = cs.ReadByte()) != -1)
-                    fsOut.WriteByte((byte)data);
-
-                fsOut.Close();
-                cs.Close();
-                fsCrypt.Close();
-                
+                    // Open the output file for writing
+                    using (var outputStream = File.Create(outputFilePath))
+                    {
+                        // Create a decryptor to perform the decryption
+                        using (var decryptor = aes.CreateDecryptor())
+                        {
+                            // Create a CryptoStream to decrypt the data
+                            using (var cryptoStream = new CryptoStream(inputStream, decryptor, CryptoStreamMode.Read))
+                            {
+                                // Copy the data from the CryptoStream to the output stream
+                                cryptoStream.CopyTo(outputStream);
+                            }
+                        }
+                    }
+                }
             }
         }
     }

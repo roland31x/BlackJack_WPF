@@ -10,6 +10,6 @@
         Loaded="Window_Loaded"
         Title="MainWindow" Height="720" Width="1280" ResizeMode="NoResize" >
     <DockPanel>
-        <Frame Name="ParentFrame" NavigationUIVisibility="Hidden"></Frame>
+        <Frame Name="ParentFrame" NavigationUIVisibility="Hidden" Navigated="ParentFrame_Navigated"></Frame>
     </DockPanel>
 </Window>

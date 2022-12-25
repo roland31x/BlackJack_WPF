@@ -59,7 +59,7 @@ namespace BlackJack_WPF
                 {
                     if (((content as DockPanel).Children[0] as Frame).Content is Page1)
                     {
-                        (((content as DockPanel).Children[0] as Frame).Content as Page1).UserNameBlock.Text = "Welcome, " + Profile.CreateProfile() + "!";
+                        (((content as DockPanel).Children[0] as Frame).Content as Page1).UserNameBlock.Text = "Welcome, " + App.BlackJackGame.GetName() + "!";
                     }
                 }
                 catch (NullReferenceException)
@@ -67,6 +67,10 @@ namespace BlackJack_WPF
                     MessageBox.Show("Something went wrong... send help.");
                 }
             }
+        }
+        void ParentFrame_Navigated(object sender, NavigationEventArgs e)
+        {
+            ParentFrame.NavigationService.RemoveBackEntry();
         }
     }
 }

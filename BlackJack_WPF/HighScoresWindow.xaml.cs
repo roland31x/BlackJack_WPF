@@ -34,7 +34,6 @@ namespace BlackJack_WPF
 
         private void SubmitB_Click(object sender, RoutedEventArgs e)
         {
-            App.BlackJackGame.SetName(PlayerName_box.Text);
             HighScore tmp = new HighScore(App.BlackJackGame);
             tmp.Save();
             this.Close();

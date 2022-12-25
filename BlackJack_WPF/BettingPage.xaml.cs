@@ -29,6 +29,13 @@ namespace BlackJack_WPF
             BetInput.Focus();
             UpdateUI();
         }
+        public void Reset()
+        {
+            betval = 0;
+            DeckCount.Text = $"{App.myDeck.CardsLeft()}";
+            BetInput.Focus();
+            UpdateUI();
+        }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -72,6 +79,7 @@ namespace BlackJack_WPF
             PlaySound();
             App.BlackJackGame.Balance -= betval;
             App.BlackJackGame.CurrentBet = betval;
+
             App.ParentWindowRef.ParentFrame.Navigate(new GamePage());
         }
 

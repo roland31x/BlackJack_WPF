@@ -27,7 +27,7 @@ namespace BlackJack_WPF
                 Balance = 500;
                 MaxBal = 500;
                 GamesPlayed = 0;
-               // Name = Profile.CreateProfile();
+                Name = Profile.CreateProfile();
             }
             public void SetName(string s)
             {
