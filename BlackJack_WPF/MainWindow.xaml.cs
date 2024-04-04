@@ -35,6 +35,8 @@ namespace BlackJack_WPF
             this.PreviewKeyDown += MusicCheck;
             this.PreviewKeyDown += SettingsMenu;
             App.PlayMusic();
+            App.BlackJackGame = new BlackJack.BlackJackStats();
+            App.myDeck = new BlackJack.Deck();
 
             this.ParentFrame.Navigate(new Page1());
         }

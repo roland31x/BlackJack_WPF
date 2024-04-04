@@ -39,6 +39,15 @@ namespace BlackJack_WPF
             {
                 Directory.CreateDirectory(Sounds);
             }
+            if(!File.Exists(HSDataPath))
+            {
+                File.Create(HSDataPath).Dispose();
+            }
+            if(!File.Exists(UserDataPath))
+            {
+                File.Create(UserDataPath).Dispose();
+                File.WriteAllText(UserDataPath, "Player");
+            }
             LoadSounds();
             return Task.CompletedTask;
         }

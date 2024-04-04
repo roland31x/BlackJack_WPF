@@ -17,10 +17,10 @@ namespace BlackJack_WPF
         public static MainWindow ParentWindowRef;
         public static HelpPages.Help HowToPlayWindow;
 
-        
-        
-        public static BlackJack.Deck myDeck = new BlackJack.Deck();
-        public static BlackJack.BlackJackStats BlackJackGame = new BlackJack.BlackJackStats();
+
+
+        public static BlackJack.Deck myDeck;
+        public static BlackJack.BlackJackStats BlackJackGame;
 
 
         public static WMPLib.WindowsMediaPlayer wplayer = new WMPLib.WindowsMediaPlayer();
