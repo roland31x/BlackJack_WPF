@@ -23,9 +23,9 @@ namespace BlackJack_WPF
         {
             InitializeComponent();
             PlayerName_box.Text = App.BlackJackGame.GetName();
-            HighScoreBox.Text = HighScore.LoadSave().ToString();
+            HighScoreBox.Text = HighScore.LoadHS().ToString();
             BalBox.Text = "HIGHEST BALANCE: " + App.BlackJackGame.GetScore().ToString() +"$";
-            if (App.BlackJackGame.GetScore() < HighScore.LoadSave().GetScore())
+            if (App.BlackJackGame.GetScore() < HighScore.LoadHS().GetScore())
             {
                 SubmitB.IsEnabled = false;
             }
@@ -35,7 +35,7 @@ namespace BlackJack_WPF
         private void SubmitB_Click(object sender, RoutedEventArgs e)
         {
             HighScore tmp = new HighScore(App.BlackJackGame);
-            tmp.Save();
+            tmp.SaveHS();
             this.Close();
         }
     }

@@ -14,13 +14,13 @@
             <ImageBrush ImageSource="Resources/MenuPics/blackjack-classic-background.jpg"/>
         </Grid.Background>
         <Canvas Margin="28,129,389,369">
-            <TextBlock FontSize="48" Foreground="White" Opacity="0.6" TextAlignment="Center" FontFamily="Algerian" Height="134" Canvas.Left="394" Width="435"><Run Text="House pays 1:1"/><LineBreak/><Run Text="Place your bet:"/></TextBlock>
-            <Button x:Name="StartGame" Content="PLACE" Background="#FF009517" Opacity="0.1" FontSize="72" FontFamily="Algerian" IsEnabled="False" Click="StartGame_Click" Height="99" Canvas.Left="400" Canvas.Top="304" Width="422" Style="{DynamicResource ButtonStyle2}"/>
-            <TextBlock x:Name="CurrentBal" FontSize="36" Foreground="White" Opacity="0.6" TextAlignment="Center" FontFamily="Algerian" Height="361" Width="327" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="10" TextWrapping="Wrap"/>
+            <TextBlock FontSize="48" Foreground="White" Opacity="0.6" TextAlignment="Center" FontFamily="{StaticResource Algerian}" Height="134" Canvas.Left="394" Width="435"><Run Text="House pays 1:1"/><LineBreak/><Run Text="Place your bet:"/></TextBlock>
+            <Button x:Name="StartGame" Content="PLACE" Background="#FF009517" Opacity="0.1" FontSize="72" FontFamily="{StaticResource Algerian}" IsEnabled="False" Click="StartGame_Click" Height="99" Canvas.Left="400" Canvas.Top="304" Width="422" Style="{DynamicResource ButtonStyle2}"/>
+            <TextBlock x:Name="CurrentBal" FontSize="36" Foreground="White" Opacity="0.6" TextAlignment="Center" FontFamily="{StaticResource Algerian}" Height="361" Width="327" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="10" TextWrapping="Wrap"/>
             <TextBox x:Name="BetInput" TextAlignment="Center" Background="{x:Null}" BorderBrush="Black" BorderThickness="6,6,6,6" TextChanged="TextBox_TextChanged" Height="121" Canvas.Left="359" Canvas.Top="139" Width="504" FontSize="72"/>
-            <Button x:Name="Shuffle_b" Content="Shuffle Deck" Background="#FF009517" Opacity="0.7" FontFamily="Algerian" Click="Shuffle_Click" Height="52" Canvas.Left="957" Canvas.Top="41" Width="159" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Style="{DynamicResource ButtonStyle2}"/>
-            <Button x:Name="NewDeck_b" Content="New Deck" Background="#FF00D1FF" Opacity="0.7" FontFamily="Algerian" Click="NewDeck_Click" Height="52" Canvas.Left="957" Canvas.Top="106" Width="159" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top" Style="{DynamicResource ButtonStyle2}"/>
-            <TextBlock x:Name="DeckCount" FontSize="50" Foreground="Black" Opacity="0.7" TextAlignment="Center" FontFamily="Algerian" Height="78" Canvas.Left="951" Width="135" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Top="-76" RenderTransformOrigin="0.5,0.5" Text="52" IsEnabled="False">
+            <Button x:Name="Shuffle_b" Content="Shuffle Deck" Background="#FF009517" Opacity="0.7" FontFamily="{StaticResource Algerian}" Click="Shuffle_Click" Height="52" Canvas.Left="957" Canvas.Top="41" Width="159" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Style="{DynamicResource ButtonStyle2}"/>
+            <Button x:Name="NewDeck_b" Content="New Deck" Background="#FF00D1FF" Opacity="0.7" FontFamily="{StaticResource Algerian}" Click="NewDeck_Click" Height="52" Canvas.Left="957" Canvas.Top="106" Width="159" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top" Style="{DynamicResource ButtonStyle2}"/>
+            <TextBlock x:Name="DeckCount" FontSize="50" Foreground="Black" Opacity="0.7" TextAlignment="Center" FontFamily="{StaticResource Algerian}" Height="78" Canvas.Left="951" Width="135" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Top="-76" RenderTransformOrigin="0.5,0.5" Text="52" IsEnabled="False">
                 <TextBlock.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -29,7 +29,7 @@
                         <TranslateTransform/>
                     </TransformGroup>
                 </TextBlock.RenderTransform></TextBlock>
-            <Button Background="White" Content="SETTINGS" FontFamily="Algerian" Click="Settings_Click" FontSize="18" Height="27" Canvas.Left="161" Canvas.Top="-85" Width="100" Style="{DynamicResource ButtonStyle2}" Opacity="0.5"/>
+            <Button Background="White" Content="SETTINGS" FontFamily="{StaticResource Algerian}" Click="Settings_Click" FontSize="18" Height="27" Canvas.Left="161" Canvas.Top="-85" Width="100" Style="{DynamicResource ButtonStyle2}" Opacity="0.5"/>
         </Canvas>
     </Grid>
 </Page>

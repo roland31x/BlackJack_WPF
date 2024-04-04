@@ -10,10 +10,10 @@
 
     <Grid Background="#FF036F00">
         <Canvas HorizontalAlignment="Center" Height="544" VerticalAlignment="Top" Width="780">
-            <Button Background="#FFAB0000" Content="EXIT" FontSize="48" FontFamily="Algerian" Click="Button_Click" Height="79" Width="181" HorizontalAlignment="Left" Canvas.Left="306" Canvas.Top="407" VerticalAlignment="Top" Style="{DynamicResource ButtonStyle2}"/>
-            <Button Background="#FFD8D400" Content="BACK" FontSize="16" FontFamily="Algerian" Click="ButtonB_Click" Height="39" Width="85" HorizontalAlignment="Left" Canvas.Left="43" Canvas.Top="505" VerticalAlignment="Top" Style="{DynamicResource ButtonStyle2}"/>
-            <TextBlock Text="the HOUSE RULES:" FontFamily="Algerian" FontSize="48" TextAlignment="Center" Height="67" Width="780"/>
-            <TextBlock FontFamily="Algerian" FontSize="24" TextWrapping="Wrap" Height="343" Canvas.Top="67" Width="780"><Run Text="-THE dealer must draw on 16 and stand on any 17."/><LineBreak/><Run Text="-the game is played with a single deck that gets SHUFFLED AND RESTOCKED either on players choice or when it gets low on cards."/><LineBreak/><Run Text="-insurance is pays 2:1."/><LineBreak/><Run Text="-winning pays 1:1."/><LineBreak/><Run Text="-aces are counted as 1 if the player would surpass 21."/><LineBreak/><Run Text="-no hand splitting."/><LineBreak/><Run/><LineBreak/><Run Text="-IF THE PLAYER RUNS OUT OF MONEY GAME is over."/></TextBlock>
+            <Button Background="#FFAB0000" Content="EXIT" FontSize="48" FontFamily="{StaticResource Algerian}" Click="Button_Click" Height="79" Width="181" HorizontalAlignment="Left" Canvas.Left="306" Canvas.Top="407" VerticalAlignment="Top" Style="{DynamicResource ButtonStyle2}"/>
+            <Button Background="#FFD8D400" Content="BACK" FontSize="16" FontFamily="{StaticResource Algerian}" Click="ButtonB_Click" Height="39" Width="85" HorizontalAlignment="Left" Canvas.Left="43" Canvas.Top="505" VerticalAlignment="Top" Style="{DynamicResource ButtonStyle2}"/>
+            <TextBlock Text="the HOUSE RULES:" FontFamily="{StaticResource Algerian}" FontSize="48" TextAlignment="Center" Height="67" Width="780"/>
+            <TextBlock FontFamily="{StaticResource Algerian}" FontSize="24" TextWrapping="Wrap" Height="343" Canvas.Top="67" Width="780"><Run Text="-THE dealer must draw on 16 and stand on any 17."/><LineBreak/><Run Text="-the game is played with a single deck that gets SHUFFLED AND RESTOCKED either on players choice or when it gets low on cards."/><LineBreak/><Run Text="-insurance is pays 2:1."/><LineBreak/><Run Text="-winning pays 1:1."/><LineBreak/><Run Text="-aces are counted as 1 if the player would surpass 21."/><LineBreak/><Run Text="-no hand splitting."/><LineBreak/><Run/><LineBreak/><Run Text="-IF THE PLAYER RUNS OUT OF MONEY GAME is over."/></TextBlock>
         </Canvas>
     </Grid>
 </Page>

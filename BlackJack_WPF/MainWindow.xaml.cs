@@ -24,14 +24,18 @@ namespace BlackJack_WPF
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private async void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            App.ParentWindowRef = this;
+            await App.Current.Dispatcher.InvokeAsync(() => EnvPath.InitGameFolders());
+
+            HighScore.CreateDefaultSave();
             this.PreviewKeyDown += MusicCheck;
             this.PreviewKeyDown += SettingsMenu;
             App.PlayMusic();
-        }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            App.ParentWindowRef = this;
             this.ParentFrame.Navigate(new Page1());
         }
         private void MusicCheck(object sender, KeyEventArgs e)

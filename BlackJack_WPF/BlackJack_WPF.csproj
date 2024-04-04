@@ -9,6 +9,59 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="CardPics\10_of_clubs.png" />
+    <None Remove="CardPics\10_of_diamonds.png" />
+    <None Remove="CardPics\10_of_hearts.png" />
+    <None Remove="CardPics\10_of_spades.png" />
+    <None Remove="CardPics\2_of_clubs.png" />
+    <None Remove="CardPics\2_of_diamonds.png" />
+    <None Remove="CardPics\2_of_hearts.png" />
+    <None Remove="CardPics\2_of_spades.png" />
+    <None Remove="CardPics\3_of_clubs.png" />
+    <None Remove="CardPics\3_of_diamonds.png" />
+    <None Remove="CardPics\3_of_hearts.png" />
+    <None Remove="CardPics\3_of_spades.png" />
+    <None Remove="CardPics\4_of_clubs.png" />
+    <None Remove="CardPics\4_of_diamonds.png" />
+    <None Remove="CardPics\4_of_hearts.png" />
+    <None Remove="CardPics\4_of_spades.png" />
+    <None Remove="CardPics\5_of_clubs.png" />
+    <None Remove="CardPics\5_of_diamonds.png" />
+    <None Remove="CardPics\5_of_hearts.png" />
+    <None Remove="CardPics\5_of_spades.png" />
+    <None Remove="CardPics\6_of_clubs.png" />
+    <None Remove="CardPics\6_of_diamonds.png" />
+    <None Remove="CardPics\6_of_hearts.png" />
+    <None Remove="CardPics\6_of_spades.png" />
+    <None Remove="CardPics\7_of_clubs.png" />
+    <None Remove="CardPics\7_of_diamonds.png" />
+    <None Remove="CardPics\7_of_hearts.png" />
+    <None Remove="CardPics\7_of_spades.png" />
+    <None Remove="CardPics\8_of_clubs.png" />
+    <None Remove="CardPics\8_of_diamonds.png" />
+    <None Remove="CardPics\8_of_hearts.png" />
+    <None Remove="CardPics\8_of_spades.png" />
+    <None Remove="CardPics\9_of_clubs.png" />
+    <None Remove="CardPics\9_of_diamonds.png" />
+    <None Remove="CardPics\9_of_hearts.png" />
+    <None Remove="CardPics\9_of_spades.png" />
+    <None Remove="CardPics\ace_of_clubs.png" />
+    <None Remove="CardPics\ace_of_diamonds.png" />
+    <None Remove="CardPics\ace_of_hearts.png" />
+    <None Remove="CardPics\ace_of_spades.png" />
+    <None Remove="CardPics\card_back.png" />
+    <None Remove="CardPics\jack_of_clubs.png" />
+    <None Remove="CardPics\jack_of_diamonds.png" />
+    <None Remove="CardPics\jack_of_hearts.png" />
+    <None Remove="CardPics\jack_of_spades.png" />
+    <None Remove="CardPics\king_of_clubs.png" />
+    <None Remove="CardPics\king_of_diamonds.png" />
+    <None Remove="CardPics\king_of_hearts.png" />
+    <None Remove="CardPics\king_of_spades.png" />
+    <None Remove="CardPics\queen_of_clubs.png" />
+    <None Remove="CardPics\queen_of_diamonds.png" />
+    <None Remove="CardPics\queen_of_hearts.png" />
+    <None Remove="CardPics\queen_of_spades.png" />
     <None Remove="Resources\10_of_clubs.png" />
     <None Remove="Resources\10_of_diamonds.png" />
     <None Remove="Resources\10_of_hearts.png" />
@@ -50,6 +103,7 @@
     <None Remove="Resources\ace_of_hearts.png" />
     <None Remove="Resources\ace_of_spades.png" />
     <None Remove="Resources\card_back.png" />
+    <None Remove="Resources\Fonts\{StaticResource Algerian} Regular.ttf" />
     <None Remove="Resources\jack_of_clubs.png" />
     <None Remove="Resources\jack_of_diamonds.png" />
     <None Remove="Resources\jack_of_hearts.png" />
@@ -65,6 +119,12 @@
     <None Remove="Resources\queen_of_diamonds.png" />
     <None Remove="Resources\queen_of_hearts.png" />
     <None Remove="Resources\queen_of_spades.png" />
+    <None Remove="Sounds\app-29.wav" />
+    <None Remove="Sounds\Card-flip-sound-effect.wav" />
+    <None Remove="Sounds\card-shuffle.wav" />
+    <None Remove="Sounds\coins-sound-fx.wav" />
+    <None Remove="Sounds\Lose-sound.wav" />
+    <None Remove="Sounds\music.mp3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -80,7 +140,189 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="CardPics\icon.ico" />
+    <Content Include="CardPics\icon.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="CardPics\10_of_clubs.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CardPics\10_of_diamonds.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CardPics\10_of_hearts.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CardPics\10_of_spades.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CardPics\2_of_clubs.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CardPics\2_of_diamonds.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CardPics\2_of_hearts.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CardPics\2_of_spades.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CardPics\3_of_clubs.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CardPics\3_of_diamonds.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CardPics\3_of_hearts.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CardPics\3_of_spades.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CardPics\4_of_clubs.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CardPics\4_of_diamonds.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CardPics\4_of_hearts.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CardPics\4_of_spades.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CardPics\5_of_clubs.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CardPics\5_of_diamonds.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CardPics\5_of_hearts.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CardPics\5_of_spades.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CardPics\6_of_clubs.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CardPics\6_of_diamonds.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CardPics\6_of_hearts.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CardPics\6_of_spades.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CardPics\7_of_clubs.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CardPics\7_of_diamonds.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CardPics\7_of_hearts.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CardPics\7_of_spades.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CardPics\8_of_clubs.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CardPics\8_of_diamonds.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CardPics\8_of_hearts.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CardPics\8_of_spades.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CardPics\9_of_clubs.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CardPics\9_of_diamonds.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CardPics\9_of_hearts.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CardPics\9_of_spades.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CardPics\ace_of_clubs.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CardPics\ace_of_diamonds.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CardPics\ace_of_hearts.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CardPics\ace_of_spades.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CardPics\card_back.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CardPics\jack_of_clubs.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CardPics\jack_of_diamonds.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CardPics\jack_of_hearts.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CardPics\jack_of_spades.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CardPics\king_of_clubs.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CardPics\king_of_diamonds.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CardPics\king_of_hearts.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CardPics\king_of_spades.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CardPics\queen_of_clubs.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CardPics\queen_of_diamonds.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CardPics\queen_of_hearts.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CardPics\queen_of_spades.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sounds\app-29.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sounds\Card-flip-sound-effect.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sounds\card-shuffle.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sounds\coins-sound-fx.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sounds\Lose-sound.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sounds\music.mp3">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
@@ -207,6 +449,7 @@
     <Resource Include="Resources\card_back.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Resources\Fonts\Algerian Regular.ttf" />
     <Resource Include="Resources\jack_of_clubs.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
@@ -255,184 +498,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="CardPics\10_of_clubs.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="CardPics\10_of_diamonds.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="CardPics\10_of_hearts.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="CardPics\10_of_spades.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="CardPics\2_of_clubs.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="CardPics\2_of_diamonds.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="CardPics\2_of_hearts.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="CardPics\2_of_spades.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="CardPics\3_of_clubs.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="CardPics\3_of_diamonds.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="CardPics\3_of_hearts.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="CardPics\3_of_spades.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="CardPics\4_of_clubs.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="CardPics\4_of_diamonds.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="CardPics\4_of_hearts.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="CardPics\4_of_spades.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="CardPics\5_of_clubs.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="CardPics\5_of_diamonds.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="CardPics\5_of_hearts.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="CardPics\5_of_spades.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="CardPics\6_of_clubs.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="CardPics\6_of_diamonds.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="CardPics\6_of_hearts.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="CardPics\6_of_spades.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="CardPics\7_of_clubs.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="CardPics\7_of_diamonds.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="CardPics\7_of_hearts.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="CardPics\7_of_spades.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="CardPics\8_of_clubs.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="CardPics\8_of_diamonds.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="CardPics\8_of_hearts.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="CardPics\8_of_spades.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="CardPics\9_of_clubs.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="CardPics\9_of_diamonds.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="CardPics\9_of_hearts.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="CardPics\9_of_spades.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="CardPics\ace_of_clubs.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="CardPics\ace_of_diamonds.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="CardPics\ace_of_hearts.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="CardPics\ace_of_spades.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="CardPics\card_back.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="CardPics\icon.ico">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="CardPics\jack_of_clubs.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="CardPics\jack_of_diamonds.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="CardPics\jack_of_hearts.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="CardPics\jack_of_spades.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="CardPics\king_of_clubs.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="CardPics\king_of_diamonds.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="CardPics\king_of_hearts.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="CardPics\king_of_spades.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="CardPics\queen_of_clubs.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="CardPics\queen_of_diamonds.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="CardPics\queen_of_hearts.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="CardPics\queen_of_spades.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Sounds\app-29.wav">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Sounds\Card-flip-sound-effect.wav">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Sounds\card-shuffle.wav">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Sounds\coins-sound-fx.wav">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Sounds\Lose-sound.wav">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Sounds\music.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Sounds\music.wav">

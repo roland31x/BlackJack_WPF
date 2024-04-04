@@ -1,8 +1,10 @@
 ﻿using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Media;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -27,8 +29,6 @@ namespace BlackJack_WPF
         BlackJack.BlackJackStats thisGame = App.BlackJackGame;
 
         BlackJack.Round thisRound = new BlackJack.Round(); 
-        
-        ImageSourceConverter imgConv = new ImageSourceConverter();
         
         List<Image> images = new List<Image>();
         
@@ -151,17 +151,17 @@ namespace BlackJack_WPF
         }
         static void CardSound()
         {
-            SoundPlayer sound = new SoundPlayer("Sounds/Card-flip-sound-effect.wav");
+            SoundPlayer sound = new SoundPlayer(EnvPath.Sounds + "/Card-flip-sound-effect.wav");
             sound.Play();
         }
         static void WinSound()
         {
-            SoundPlayer sound = new SoundPlayer("Sounds/app-29.wav");
+            SoundPlayer sound = new SoundPlayer(EnvPath.Sounds + "/app-29.wav");
             sound.Play();
         }
         static void LoseSound()
         {
-            SoundPlayer sound = new SoundPlayer("Sounds/Lose-sound.wav");
+            SoundPlayer sound = new SoundPlayer(EnvPath.Sounds + "/Lose-sound.wav");
             sound.Play();
         }
         private void UpdateUI()
@@ -287,10 +287,12 @@ namespace BlackJack_WPF
         }
         private void DrawNewCard()
         {
-            cardcounter++;           
+            cardcounter++;
+           
+
             var cardf = new Image()
             {
-                Source = (ImageSource)imgConv.ConvertFromString(App.myDeck.DrawCard(thisRound)),
+                Source = App.myDeck.CardImage(thisRound),
                 Height = 160,
                 Width = 110,
                 Stretch = Stretch.Fill,
@@ -323,16 +325,27 @@ namespace BlackJack_WPF
             d_cardcounter++;
             if(d_cardcounter == 2)
             {
-                DealersHiddenCard = (ImageSource)imgConv.ConvertFromString(App.myDeck.DrawCard(thisRound));
+
+                DealersHiddenCard = App.myDeck.CardImage(thisRound);
                 DealersHValue = thisRound.LastCardVal;
+
+                BitmapImage hidden = new BitmapImage();
+                using (Stream s = Assembly.GetExecutingAssembly().GetManifestResourceStream("BlackJack_WPF.CardPics.card_back.png"))
+                {
+                    hidden.BeginInit();
+                    hidden.StreamSource = s;
+                    hidden.EndInit();
+                }
+
                 var cardh = new Image()
                 {
-                    Source = (ImageSource)imgConv.ConvertFromString("CardPics/card_back.png"),
+                    Source = hidden,
                     Height = 160,
                     Width = 110,
                     Stretch = Stretch.Fill,
                     Visibility = Visibility.Visible,
                 };
+
                 MainCanvas.Children.Add(cardh);
                 d_images.Add(cardh);
                 Canvas.SetTop(cardh, 79);
@@ -344,9 +357,10 @@ namespace BlackJack_WPF
                 UpdateUI();
                 return;
             }
+
             var cardf = new Image()
             {
-                Source = (ImageSource)imgConv.ConvertFromString(App.myDeck.DrawCard(thisRound)),
+                Source = App.myDeck.CardImage(thisRound),
                 Height = 160,
                 Width = 110,
                 Stretch = Stretch.Fill,
@@ -399,7 +413,7 @@ namespace BlackJack_WPF
             if(thisGame.Balance <= 0)
             {
                 LoseSound();
-                if(thisGame.GetScore() > HighScore.LoadSave().GetScore())
+                if(thisGame.GetScore() > HighScore.LoadHS().GetScore())
                 {
                     HighScoresWindow wind = new HighScoresWindow();
                     wind.ShowDialog();

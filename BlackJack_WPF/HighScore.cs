@@ -12,8 +12,10 @@ namespace BlackJack_WPF
 {
     public class HighScore
     {
+        private readonly string _key = "R0L4NDAESENCRYPT";
         protected string Name { get; set; }
         protected int Score { get; set; }
+        private static HighScore? _loaded = null;
         public HighScore(BlackJack.BlackJackStats s)
         {
             Name = s.GetName();
@@ -24,9 +26,77 @@ namespace BlackJack_WPF
             Name = s;
             Score = n;
         }
+        public static HighScore OverrideDefaultSave()
+        {
+            HighScore def = new HighScore("Wild Bill", 3500);
+            def.SaveHS();
+            return def;
+        }
+        public static HighScore CreateDefaultSave()
+        {
+            if(!File.Exists(EnvPath.HSDataPath))
+            {
+                File.Create(EnvPath.HSDataPath).Dispose();
+                return OverrideDefaultSave();
+            }
+            else
+            {
+                return LoadHS();
+            } 
+        }
+        public static HighScore LoadHS()
+        {
+            if(_loaded != null)
+            {
+                return _loaded;
+            }
+            try
+            {
+                FileStream fs = new FileStream(EnvPath.HSDataPath, FileMode.Open);
+                StreamReader sr = new StreamReader(fs);
+                string toencrypt = sr.ReadToEnd();
+                sr.Close();
+                fs.Dispose();
+                string decrypted = DecryptString(toencrypt, "R0L4NDAESENCRYPT");
+                string name = decrypted.Split(':')[0];
+                int score = int.Parse(decrypted.Split(':')[1].Split('$')[0].Trim());
+                _loaded = new HighScore(name, score);
+                return _loaded;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+                return OverrideDefaultSave();
+            }
+        }
+        private void Reload()
+        {
+            FileStream fs = new FileStream(EnvPath.HSDataPath, FileMode.Open);
+            StreamReader sr = new StreamReader(fs);
+            string todecrypt = sr.ReadToEnd();
+            sr.Close();
+            fs.Dispose();
+            string decrypted = DecryptString(todecrypt, "R0L4NDAESENCRYPTAAAAAAAAAAAAAAAAAAAAAAAAA");
+            string name = decrypted.Split(':')[0];
+            int score = int.Parse(decrypted.Split(':')[1].Split('$')[0].Trim());
+            _loaded = new HighScore(name, score);
+        }
+        public void SaveHS()
+        {
+            File.WriteAllText(EnvPath.HSDataPath, EncryptString(this.ToString(), "R0L4NDAESENCRYPTAAAAAAAAAAAAAAAAAAAAAAAAA"));
+            Reload();
+        }
         public int GetScore()
         {
             return this.Score;
+        }
+        public string GetName()
+        {
+            return this.Name;
+        }
+        public void SetName(string s)
+        {
+            this.Name = s;
         }
         public override string ToString()
         {
@@ -38,144 +108,17 @@ namespace BlackJack_WPF
             str.Append('$');
             return str.ToString();
         }
-        public void Save()
+
+        static string EncryptString(string plaintext, string password)
         {
-            string path = "EnSave.data";
-            string temp = "Temp.data";
-            File.Delete(path);
-            using (FileStream fs = new FileStream(temp, FileMode.OpenOrCreate))
-            {
-                AddText(fs, this.ToString());
-            }
-            EncryptFile(temp, path);
-        }
-        public static HighScore LoadSave()
-        {
-            string path = "EnSave.Data";
-            string temp = "Temp.data";
-            StringBuilder score = new StringBuilder();
-            try
-            {
-                DecryptFile(path, temp);
-            }
-            catch(Exception)
-            {
-                MessageBox.Show("Save data corrupt, consider deleting the .data files in the .exe directory.");
-                return new HighScore("ERROR", 404);
-            }
-            using (FileStream fs = File.OpenRead(temp))
-            {
-                byte[] b = new byte[1];
-                //UTF8Encoding tmp = new UTF8Encoding(true);
-                while (fs.Read(b, 0, b.Length) > 0)
-                {
-                    score.Append((char)b[0]);
-                }
-            }
-            score.Replace(" ", "");
-            score.Replace("$", "");
-            File.Delete(temp);
-            try
-            {
-                HighScore loaded = new HighScore(score.ToString().Split(':')[0], Convert.ToInt32(score.ToString().Split(':')[1]));
-                return loaded;
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Save data corrupt, consider deleting the .data files in the .exe directory.");
-                return new HighScore("ERROR", 404);
-            }
-            
-        }
-        public static void CreateDefaultSave()
-        {
-            string path = "Save.data";
-            string path2 = "EnSave.data";
-            if (File.Exists(path2))
-            {
-                return;
-            }
-            else
-            {
-                using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate))
-                {
-                    AddText(fs, $"DEFAULT-JACK: 3000$");
-                }
-                EncryptFile(path, path2);
-                File.Delete(path);
-            }
-        }
-        private static void AddText(FileStream fs, string value)
-        {
-            byte[] info = new UTF8Encoding(true).GetBytes(value);
-            fs.Write(info, 0, info.Length);
+            return plaintext; // rework needed
+
         }
 
-        private static readonly string _aesKeyString = "R0L4NDAESENCRYPT"; // Replace the ellipsis with your AES key
-
-        public static void EncryptFile(string inputFilePath, string outputFilePath)
+        static string DecryptString(string encrypted, string password)
         {
-            // Create a new AES algorithm with the key
-            using (var aes = Aes.Create())
-            {
-                aes.Key = Encoding.UTF8.GetBytes(_aesKeyString);
-                aes.GenerateIV();
-
-                // Open the input file for reading
-                using (var inputStream = File.OpenRead(inputFilePath))
-                {
-                    // Open the output file for writing
-                    using (var outputStream = File.Create(outputFilePath))
-                    {
-                        // Write the IV to the output file
-                        outputStream.Write(aes.IV, 0, aes.IV.Length);
-
-                        // Create an encryptor to perform the encryption
-                        using (var encryptor = aes.CreateEncryptor())
-                        {
-                            // Create a CryptoStream to encrypt the data
-                            using (var cryptoStream = new CryptoStream(outputStream, encryptor, CryptoStreamMode.Write))
-                            {
-                                // Copy the data from the input stream to the CryptoStream
-                                inputStream.CopyTo(cryptoStream);
-                            }
-                        }
-                    }
-                }
-            }
+            return encrypted; // rework needed
         }
 
-        public static void DecryptFile(string inputFilePath, string outputFilePath)
-        {
-            // Create a new AES algorithm with the key
-            using (var aes = Aes.Create())
-            {
-                aes.Key = Encoding.UTF8.GetBytes(_aesKeyString);
-
-                // Open the input file for reading
-                using (var inputStream = File.OpenRead(inputFilePath))
-                {
-                    // Read the IV from the input file
-                    var iv = new byte[aes.IV.Length];
-                    inputStream.Read(iv, 0, iv.Length);
-                    aes.IV = iv;
-
-                    // Open the output file for writing
-                    using (var outputStream = File.Create(outputFilePath))
-                    {
-                        // Create a decryptor to perform the decryption
-                        using (var decryptor = aes.CreateDecryptor())
-                        {
-                            // Create a CryptoStream to decrypt the data
-                            using (var cryptoStream = new CryptoStream(inputStream, decryptor, CryptoStreamMode.Read))
-                            {
-                                // Copy the data from the CryptoStream to the output stream
-                                cryptoStream.CopyTo(outputStream);
-                            }
-                        }
-                    }
-                }
-            }
-        }
     }
 }

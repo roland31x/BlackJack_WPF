@@ -1,14 +1,17 @@
 ﻿using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Media;
 using System.Numerics;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace BlackJack_WPF
 {
@@ -27,7 +30,7 @@ namespace BlackJack_WPF
                 Balance = 500;
                 MaxBal = 500;
                 GamesPlayed = 0;
-                Name = Profile.CreateProfile();
+                Name = Profile.GetName();
             }
             public void SetName(string s)
             {
@@ -155,7 +158,7 @@ namespace BlackJack_WPF
                     CurrentDeck.Push(v);
                 }
             }
-            public string DrawCard(Round game)
+            public BitmapImage CardImage(Round game)
             {
                 StringBuilder card = new StringBuilder();
                 Vector2 v;
@@ -174,10 +177,10 @@ namespace BlackJack_WPF
                 string cardType = v.X.ToString();
                 switch (cardName) 
                 {
-                    case "11":cardName = "jack";break;
-                    case "12":cardName = "queen";break;
-                    case "13":cardName = "king";break;
-                    case "14":cardName = "ace";break;
+                    case "11":cardName = "jack"; break;
+                    case "12":cardName = "queen"; break;
+                    case "13":cardName = "king"; break;
+                    case "14":cardName = "ace"; break;
                     default: break;
                 }
                 switch (cardType)
@@ -187,12 +190,28 @@ namespace BlackJack_WPF
                     case "3": cardType = "hearts"; break;
                     case "4": cardType = "spades"; break;
                 }
-                card.Append("CardPics/");
+                card.Append("BlackJack_WPF.CardPics.");
                 card.Append(cardName);
                 card.Append("_of_");
                 card.Append(cardType);
                 card.Append(".png");
-                return card.ToString();
+
+                BitmapImage tor = new BitmapImage();
+                tor.BeginInit();
+                try
+                {
+                    using (Stream s = Assembly.GetExecutingAssembly().GetManifestResourceStream(card.ToString()))
+                    {
+                        tor.StreamSource = s;
+                    }
+                    tor.EndInit();
+                    return tor;
+                }
+                catch
+                {
+                    tor.EndInit();
+                    return new BitmapImage();
+                }
             }
             public int CardsLeft()
             {
@@ -231,8 +250,8 @@ namespace BlackJack_WPF
             }
             static void ShuffleSound()
             {
-                //SoundPlayer sound = new SoundPlayer("Sounds/card-shuffle.wav");
-                //sound.Play();
+                SoundPlayer sound = new SoundPlayer(EnvPath.Sounds + "/card-shuffle.wav");
+                sound.Play();
             }
         }       
     }

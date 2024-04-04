@@ -73,7 +73,7 @@ namespace BlackJack_WPF
         private void SetNameB(object sender, RoutedEventArgs e)
         {
             App.BlackJackGame.SetName(TextBName.Text);
-            Profile.SaveName(App.BlackJackGame);
+            Profile.SetName(TextBName.Text);
             NameSetButton.IsEnabled = false;
         }
 

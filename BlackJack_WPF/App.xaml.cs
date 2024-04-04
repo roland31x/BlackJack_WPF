@@ -29,7 +29,7 @@ namespace BlackJack_WPF
         
         public static void PlayMusic()
         {
-            wplayer.URL = @"Sounds/music.mp3";
+            wplayer.URL = EnvPath.Sounds + "/music.mp3";
             wplayer.settings.volume = 30;
             wplayer.settings.autoStart = true;
             wplayer.settings.setMode("loop", true);

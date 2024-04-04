@@ -70,7 +70,7 @@ namespace BlackJack_WPF
         }
         void PlaySound()
         {
-            SoundPlayer sound = new SoundPlayer("Sounds/coins-sound-fx.wav");
+            SoundPlayer sound = new SoundPlayer(EnvPath.Sounds + "/coins-sound-fx.wav");
             sound.Play();
         }
 
@@ -102,7 +102,6 @@ namespace BlackJack_WPF
         {
             SettingsWindow set = new SettingsWindow();
             set.ShowDialog();
-         //   set.Close();
         }
 
         private void Page_PreviewKeyDown(object sender, KeyEventArgs e)

@@ -7,76 +7,30 @@ using System.Threading.Tasks;
 
 namespace BlackJack_WPF
 {
-    public class Profile
+    public static class Profile
     {
-        public static void SaveName(BlackJack.BlackJackStats s)
+        private static string? name = null;
+        public static void SetName(string s)
         {
-            string path = "Profile.data";
-            if (File.Exists(path))
-            {
-                File.Delete(path);
-            }
-            using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate))
-            {
-                AddText(fs, "Username: " + s.GetName());
-            }
+            File.WriteAllText(EnvPath.UserDataPath, s);
+            name = s;
         }
-        public static string CreateProfile()
+        public static string GetName()
         {
-            string path = "Profile.data";
-            if(File.Exists(path))
+            if(name == null)
             {
-                return LoadProfile(path);
-            }
-            else
-            {
-                using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate))
+                try
                 {
-                    AddText(fs, "Username: Player");
-                    
+                    name = File.ReadAllText(EnvPath.UserDataPath);
+                    return name;
                 }
-                return "Player";
-            }
-        }
-        private static string CreateProfileNew()
-        {
-            string path = "Profile.data";
-            File.Delete(path);
-            using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate))
-            {
-                AddText(fs, "Username: Player");
-                
-            }
-            return "Player";
-        }
-
-        private static string LoadProfile(string path)
-        {
-            try
-            {
-                StringBuilder score = new StringBuilder();
-                using (FileStream fs = File.OpenRead(path))
+                catch (Exception e)
                 {
-                    byte[] b = new byte[1];
-                    //UTF8Encoding tmp = new UTF8Encoding(true);
-                    while (fs.Read(b, 0, b.Length) > 0)
-                    {
-                        score.Append((char)b[0]);
-                    }
+                    SetName("Player");
+                    return "Player";
                 }
-                string name = score.ToString().Split(':')[1].Replace(" ", "");
-                return name;
             }
-            catch (Exception)
-            {
-                return CreateProfileNew();
-            }           
-        }
-
-        private static void AddText(FileStream fs, string value)
-        {
-            byte[] info = new UTF8Encoding(true).GetBytes(value);
-            fs.Write(info, 0, info.Length);
+            return name;
         }
     }
 }

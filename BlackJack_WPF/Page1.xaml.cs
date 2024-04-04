@@ -25,7 +25,6 @@ namespace BlackJack_WPF
         public Page1()
         {
             InitializeComponent();
-            HighScore.CreateDefaultSave();
             UserNameBlock.Text = "Welcome, " + App.BlackJackGame.GetName() + "!";
             this.Focusable = true;
             Loaded += Page1_Loaded;
