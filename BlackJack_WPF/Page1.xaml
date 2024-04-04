@@ -26,7 +26,14 @@
             </Image>
             <Button x:Name="startb" Content="PLAY" Style="{StaticResource ButtonStyle2}" BorderBrush="Black" FontSize="72" FontFamily="{StaticResource Algerian}" Click="Play_Button_Click" Height="140" Canvas.Left="257" Canvas.Top="280" Width="414" BorderThickness="1,1,1,1" Background="#FF05AB00" Focusable="True"/>
             <Button Background="#FFA50000" Content="HOW TO PLAY" FontSize="36" FontFamily="{StaticResource Algerian}" Click="HowToPlay_Click" Height="81" Canvas.Left="330" Canvas.Top="568" Width="268" HorizontalAlignment="Center" VerticalAlignment="Top" Style="{DynamicResource ButtonStyle2}" BorderBrush="Black"/>
-            <TextBlock Text="BLACKJACK GAME" Foreground="White" FontFamily="{StaticResource Algerian}" FontSize="72" TextWrapping="Wrap" TextAlignment="Center" Height="177" Canvas.Left="202" Width="524"/>
+            <TextBlock Foreground="White"
+                       FontFamily="{StaticResource Algerian}"
+                       FontSize="72"
+                       TextWrapping="Wrap"
+                       TextAlignment="Center"
+                       Height="177"
+                       Canvas.Left="202"
+                       Width="524"><Run Text="WILD WEST" /><LineBreak /><Run Text="BLACKJACK" /></TextBlock>
             <Image Source="/Resources/ace_of_spades.png" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Height="163" Canvas.Top="289" Width="112" Canvas.Left="24" HorizontalAlignment="Left" VerticalAlignment="Center">
                 <Image.RenderTransform>
                     <TransformGroup>

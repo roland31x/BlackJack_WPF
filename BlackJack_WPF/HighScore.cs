@@ -53,37 +53,39 @@ namespace BlackJack_WPF
             try
             {
                 FileStream fs = new FileStream(EnvPath.HSDataPath, FileMode.Open);
-                StreamReader sr = new StreamReader(fs);
-                string toencrypt = sr.ReadToEnd();
-                sr.Close();
+
+                byte[] todecrypt = new byte[fs.Length];
+                fs.Read(todecrypt, 0, (int)fs.Length);
+
                 fs.Dispose();
-                string decrypted = DecryptString(toencrypt, "R0L4NDAESENCRYPT");
+                string decrypted = Decrypt(todecrypt, "R0L4NDAESENCRYPT");
                 string name = decrypted.Split(':')[0];
                 int score = int.Parse(decrypted.Split(':')[1].Split('$')[0].Trim());
                 _loaded = new HighScore(name, score);
                 return _loaded;
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                MessageBox.Show(e.Message);
+                MessageBox.Show("Error loading highscore file, reverting...");
                 return OverrideDefaultSave();
             }
         }
         private void Reload()
         {
             FileStream fs = new FileStream(EnvPath.HSDataPath, FileMode.Open);
-            StreamReader sr = new StreamReader(fs);
-            string todecrypt = sr.ReadToEnd();
-            sr.Close();
+
+            byte[] todecrypt = new byte[fs.Length];
+            fs.Read(todecrypt, 0, (int)fs.Length);
+
             fs.Dispose();
-            string decrypted = DecryptString(todecrypt, "R0L4NDAESENCRYPTAAAAAAAAAAAAAAAAAAAAAAAAA");
+            string decrypted = Decrypt(todecrypt, "R0L4NDAESENCRYPT");
             string name = decrypted.Split(':')[0];
             int score = int.Parse(decrypted.Split(':')[1].Split('$')[0].Trim());
             _loaded = new HighScore(name, score);
         }
         public void SaveHS()
         {
-            File.WriteAllText(EnvPath.HSDataPath, EncryptString(this.ToString(), "R0L4NDAESENCRYPTAAAAAAAAAAAAAAAAAAAAAAAAA"));
+            File.WriteAllBytes(EnvPath.HSDataPath, Encrypt(this.ToString(), "R0L4NDAESENCRYPT"));
             Reload();
         }
         public int GetScore()
@@ -109,16 +111,49 @@ namespace BlackJack_WPF
             return str.ToString();
         }
 
-        static string EncryptString(string plaintext, string password)
+        static byte[] Encrypt(string plainText, string key)
         {
-            return plaintext; // rework needed
+            byte[] encrypted;
 
+            using (Aes aes = Aes.Create())
+            {
+
+                byte[] Key = Encoding.UTF8.GetBytes(key);
+                byte[] IV = new byte[aes.BlockSize / 8];
+                ICryptoTransform encryptor = aes.CreateEncryptor(Key, IV);
+
+                using (MemoryStream ms = new MemoryStream())
+                {
+
+                    using (CryptoStream cs = new CryptoStream(ms, encryptor, CryptoStreamMode.Write))
+                    {
+                        using (StreamWriter sw = new StreamWriter(cs))
+                            sw.Write(plainText);
+                        encrypted = ms.ToArray();
+                    }
+                }
+            }
+            return encrypted;
         }
-
-        static string DecryptString(string encrypted, string password)
+        static string Decrypt(byte[] cipherText, string key)
         {
-            return encrypted; // rework needed
-        }
+            string plaintext = null;
 
+            using (Aes aes = Aes.Create())
+            {
+                byte[] Key = Encoding.UTF8.GetBytes(key);
+                byte[] iv = new byte[aes.BlockSize / 8];
+                ICryptoTransform decryptor = aes.CreateDecryptor(Key, iv);
+                using (MemoryStream ms = new MemoryStream(cipherText))
+                {
+                    using (CryptoStream cs = new CryptoStream(ms, decryptor, CryptoStreamMode.Read))
+                    {
+                        using (StreamReader reader = new StreamReader(cs))
+                            plaintext = reader.ReadToEnd();
+                    }
+                }
+            }
+            return plaintext;
+        }
     }
 }

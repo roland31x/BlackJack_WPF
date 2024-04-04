@@ -203,8 +203,9 @@ namespace BlackJack_WPF
                     using (Stream s = Assembly.GetExecutingAssembly().GetManifestResourceStream(card.ToString()))
                     {
                         tor.StreamSource = s;
+                        tor.EndInit();
                     }
-                    tor.EndInit();
+                    
                     return tor;
                 }
                 catch

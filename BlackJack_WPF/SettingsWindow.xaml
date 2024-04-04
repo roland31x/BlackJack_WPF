@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         PreviewKeyDown="Window_PreviewKeyDown"
         ResizeMode="NoResize"
-        Title="SettingsWindow" Height="450" Width="800">
+        Title="Settings" Height="450" Width="800">
     <Grid Background="#FF00911B">
         <Canvas Margin="0,10,0,10" HorizontalAlignment="Center" Width="780">
             <TextBlock Text="USERNAME: " TextAlignment="Center" FontFamily="{StaticResource Algerian}" FontSize="48" Height="66" Canvas.Top="108" Width="287" HorizontalAlignment="Left" Canvas.Left="25" VerticalAlignment="Center"/>

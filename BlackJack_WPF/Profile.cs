@@ -24,7 +24,7 @@ namespace BlackJack_WPF
                     name = File.ReadAllText(EnvPath.UserDataPath);
                     return name;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     SetName("Player");
                     return "Player";
