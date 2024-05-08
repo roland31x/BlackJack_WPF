@@ -17,7 +17,7 @@ namespace BlackJack_WPF
         }
         public static string GetName()
         {
-            if(name == null)
+            if (name == null)
             {
                 try
                 {
