@@ -34,6 +34,7 @@ namespace BlackJack_WPF
             HighScore.CreateDefaultSave();
             this.PreviewKeyDown += MusicCheck;
             this.PreviewKeyDown += SettingsMenu;
+
             App.PlayMusic();
             App.BlackJackGame = new BlackJack.BlackJackStats();
             App.myDeck = new BlackJack.Deck();
